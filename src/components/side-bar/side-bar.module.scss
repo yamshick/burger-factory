@@ -1,0 +1,24 @@
+.sideBarWrapper {
+  background-color: #F6F8F9;
+}
+
+.sideBarOpen {
+  min-width: 235px;
+}
+
+.sideBarContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 24px;
+}
+
+.toggleIconWrapper {
+  position: absolute;
+  border: solid 5px;
+  // TODO
+  top: 200px;
+  //top: 50%;
+  right: 0;
+  //transform: translate(0, -50%);
+}

@@ -1,8 +1,13 @@
-import styles from "./app.module.scss"
-import {SideBar} from "./components/side-bar";
+import styles from "./app.module.scss";
+import { SideBar } from "./components/side-bar/side-bar";
+import { Container } from "./components/container/container";
 export const App = () => {
-    return (<div>
-        <h1 className={styles.app}>hello world</h1>
+  return (
+    <div>
+      <div className={styles.mainContainer}>
         <SideBar />
-    </div>)
-}
+        <Container />
+      </div>
+    </div>
+  );
+};
