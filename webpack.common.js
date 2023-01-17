@@ -16,13 +16,6 @@ module.exports = {
           loader: "babel-loader",
         },
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     "style-loader",
-      //     "css-loader",
-      //   ],
-      // },
       {
         test: /\.s[ac]ss$/i,
         use: [
@@ -30,6 +23,10 @@ module.exports = {
           "css-loader",
           "sass-loader",
         ],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       },
     ],
   },
