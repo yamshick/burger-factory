@@ -26,7 +26,7 @@ export const modalSlice = createSlice({
     },
     resetAddGroupModalData(state) {
       state.addGroupModalData = null;
-    }
+    },
   },
 });
 

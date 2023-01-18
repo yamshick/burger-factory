@@ -24,15 +24,17 @@ export const blocksSlice = createSlice({
       }
     },
     addGroup(state, action) {
-      const {blockId, groupName} = action.payload;
-      const block = state.receiptBlocks.find(receipt => receipt.id === blockId)
+      const { blockId, groupName } = action.payload;
+      const block = state.receiptBlocks.find(
+        (receipt) => receipt.id === blockId
+      );
 
-          if (block) {
-            block.groups.push({
-              id: Date.now(),
-              name: groupName
-            })
-          }
+      if (block) {
+        block.groups.push({
+          id: Date.now(),
+          name: groupName,
+        });
+      }
     },
     setWholeState(state, action) {
       // console.log({state}, {action})

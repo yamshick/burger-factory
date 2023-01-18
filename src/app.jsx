@@ -7,7 +7,7 @@ import { sideBarSlice } from "./store/reducers/side-bar-slice";
 import { modalSlice } from "./store/reducers/modal-slice";
 import { blocksSlice } from "./store/reducers/blocks-slice";
 import { useEffect } from "react";
-import {CreateGroupModal} from "./components/modal/create-group/create-group-modal";
+import { CreateGroupModal } from "./components/modal/create-group/create-group-modal";
 
 export const App = () => {
   const dispatch = useDispatch();

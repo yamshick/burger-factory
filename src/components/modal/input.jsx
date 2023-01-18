@@ -11,5 +11,12 @@ export const Input = ({ placeholder, onEnter }) => {
   };
   const onChange = (event) => setValue(event.target.value);
 
-  return <input placeholder={placeholder} onKeyDown={onKeyDown} value={value} onChange={onChange} />;
+  return (
+    <input
+      placeholder={placeholder}
+      onKeyDown={onKeyDown}
+      value={value}
+      onChange={onChange}
+    />
+  );
 };
