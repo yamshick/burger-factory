@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import styles from "./hav-bar.module.scss";
+import { PageReceipts } from "../page-receipts";
 
 export const NavBar = () => {
   return (
@@ -20,7 +21,7 @@ export const NavBar = () => {
         </nav>
 
         <Routes>
-          <Route path="/" element={<Receipts />}></Route>
+          <Route path="/" element={<PageReceipts />}></Route>
           <Route path="/price-list" element={<PriceList />}></Route>
           <Route path="/combo-sets" element={<ComboSets />}></Route>
         </Routes>
@@ -30,13 +31,13 @@ export const NavBar = () => {
 };
 
 function ComboSets() {
-  return <h2>Рецепты</h2>;
+  return <h2>Комбо-наборы</h2>;
 }
 
 function Receipts() {
-  return <h2>Прайс-лист</h2>;
+  return <h2>Рецепты</h2>;
 }
 
 function PriceList() {
-  return <h2>Комбо-наборы</h2>;
+  return <h2>Прайс-лист</h2>;
 }
