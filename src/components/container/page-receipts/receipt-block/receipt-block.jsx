@@ -1,36 +1,8 @@
 import styles from "./receipt-block.module.scss";
-import CloseCross from "./close-cross.svg";
-import { blocksSlice } from "store/reducers/blocks-slice";
-import { useDispatch } from "react-redux";
-import RedPlus from "./red-plus.svg";
-const ReceiptBlockHeader = ({ id, name }) => {
-  const { removeBlock } = blocksSlice.actions;
-  const dispatch = useDispatch();
+import { ReceiptBlockHeader } from "./receipt-block-header";
+import { ReceiptBlockActions } from "./receipt-block-actions";
+import { ReceiptBlockTable } from "./receipt-block-table";
 
-  return (
-    <div className={styles.receiptBlockHeader}>
-      {name}
-      <CloseCross onClick={() => dispatch(removeBlock(id))} />
-    </div>
-  );
-};
-
-const ReceiptBlockActions = () => {
-  return (
-    <div>
-      <button className={styles.receiptBlockActionButton}>
-        <RedPlus />
-        Ингредиент
-      </button>
-      <button className={styles.receiptBlockActionButton}>
-        <RedPlus />
-        Группа
-      </button>
-    </div>
-  );
-};
-
-const ReceiptBlockTable = () => <div>TABLE</div>;
 export const ReceiptBlock = ({ id, name, group }) => {
   return (
     <div className={styles.receiptBlock}>
