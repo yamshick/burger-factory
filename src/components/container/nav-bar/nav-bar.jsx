@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import styles from "./hav-bar.module.scss";
 import { PageReceipts } from "../page-receipts";
+import { BreadCrumbs } from "../bread-crumbs/bread-crumbs";
 
 export const NavBar = () => {
   return (
@@ -19,6 +20,8 @@ export const NavBar = () => {
             </div>
           </div>
         </nav>
+
+        <BreadCrumbs />
 
         <Routes>
           <Route path="/" element={<PageReceipts />}></Route>

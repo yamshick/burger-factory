@@ -1,7 +1,8 @@
 import Chevron from "./chevron.svg";
 import { useState } from "react";
+import { dropDownItemsMap, dropDownSubItemsMap } from "../constants";
 
-export const Dropdown = ({ header, items, onSelectItem }) => {
+export const Dropdown = ({ header, subItems, onSelectSubItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = (e) => {
@@ -10,12 +11,12 @@ export const Dropdown = ({ header, items, onSelectItem }) => {
   return (
     <>
       <Chevron onClick={toggleOpen} />
-      {header}
+      {dropDownItemsMap[header]}
       {isOpen && (
         <ul>
-          {items?.map((item) => (
-            <li key={item} onClick={onSelectItem}>
-              {item}
+          {subItems?.map((item) => (
+            <li key={item} onClick={() => onSelectSubItem(item)}>
+              {dropDownSubItemsMap[item]}
             </li>
           ))}
         </ul>

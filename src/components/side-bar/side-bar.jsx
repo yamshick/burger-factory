@@ -4,8 +4,13 @@ import ArrowRight from "./arrow-right.svg";
 import ArrowLeft from "./arrow-left.svg";
 import { useState } from "react";
 import { Dropdown } from "./dropdown/dropdown";
+import { useDispatch } from "react-redux";
+import { sideBarSlice } from "../../store/reducers/side-bar-slice";
 
 export const SideBar = () => {
+  const dispatch = useDispatch();
+  const { setDropDownActiveItem, setDropDownActiveSubItem } =
+    sideBarSlice.actions;
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -25,16 +30,29 @@ export const SideBar = () => {
         <div className={styles.toggleIconWrapper}>
           <ArrowLeft onClick={toggleOpen} />
         </div>
-        <Dropdown header={"Сендвичи"} items={[]} onSelectItem={console.log} />
         <Dropdown
-          header={"Бургеры"}
-          items={["Классический", "Чизбургер", "Биг Мак", "Биг Тейсти"]}
-          onSelectItem={console.log}
+          header={"sandwiches"}
+          subItems={[]}
+          onSelectSubItem={(subItem) => {
+            dispatch(setDropDownActiveItem("sandwiches"));
+            dispatch(setDropDownActiveSubItem(subItem));
+          }}
         />
         <Dropdown
-          header={"Багет"}
-          items={["С ветчиной", "С пастрами", "Чесночный", "С перцем-гриль"]}
-          onSelectItem={console.log}
+          header={"burgers"}
+          subItems={["classic", "cheeseBurger", "bigMac", "bigTasty"]}
+          onSelectSubItem={(subItem) => {
+            dispatch(setDropDownActiveItem("burgers"));
+            dispatch(setDropDownActiveSubItem(subItem));
+          }}
+        />
+        <Dropdown
+          header={"baget"}
+          subItems={["withHam", "withPastra", "garlic", "withPepperGrill"]}
+          onSelectSubItem={(subItem) => {
+            dispatch(setDropDownActiveItem("baget"));
+            dispatch(setDropDownActiveSubItem(subItem));
+          }}
         />
       </div>
     </div>
