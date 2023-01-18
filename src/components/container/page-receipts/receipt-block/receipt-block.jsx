@@ -22,8 +22,8 @@ const ReceiptBlockActions = () => {
         <RedPlus />
         Ингредиент
       </button>
-      <button>
-        <RedPlus className={styles.receiptBlockActionButton} />
+      <button className={styles.receiptBlockActionButton}>
+        <RedPlus />
         Группа
       </button>
     </div>
@@ -33,10 +33,10 @@ const ReceiptBlockActions = () => {
 const ReceiptBlockTable = () => <div>TABLE</div>;
 export const ReceiptBlock = ({ id, name, group }) => {
   return (
-    <>
+    <div className={styles.receiptBlock}>
       <ReceiptBlockHeader id={id} name={name} />
       <ReceiptBlockActions />
       <ReceiptBlockTable group={group} />
-    </>
+    </div>
   );
 };

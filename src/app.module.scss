@@ -1,12 +1,8 @@
-$color: rgb(170, 26, 26);
-
-.app {
-  color: $color;
-}
-
 .mainContainer {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
+  font-size: 20px;
+  font-family: "Inter";
 }
 

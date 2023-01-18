@@ -16,10 +16,6 @@ export const PageReceipts = () => {
       <div>
         {receiptBlocks?.map(({ name, id, group }) => (
           <ReceiptBlock key={id} id={id} name={name} group={group} />
-          // <div key={id} className={styles.receiptBlockHeader}>
-          //   {name}
-          //   <CloseCross onClick={() => dispatch(removeBlock(id))} />
-          // </div>
         ))}
       </div>
       <div>
