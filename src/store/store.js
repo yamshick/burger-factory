@@ -9,8 +9,16 @@ const rootReducer = combineReducers({
   modalReducer,
 });
 
+const logMiddleware = (store) => (next) => (action) => {
+  const result = next(action);
+  console.log(action);
+  localStorage.setItem("state", JSON.stringify(store.getState()));
+  return result;
+};
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(logMiddleware),
   });
 };

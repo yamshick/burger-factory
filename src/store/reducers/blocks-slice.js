@@ -23,6 +23,12 @@ export const blocksSlice = createSlice({
         state.receiptBlocks.splice(index, 1);
       }
     },
+    setWholeState(state, action) {
+      // console.log({state}, {action})
+      Object.keys(state).forEach((key) => {
+        state[key] = action.payload[key];
+      });
+    },
   },
 });
 

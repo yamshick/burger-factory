@@ -19,6 +19,11 @@ export const sideBarSlice = createSlice({
       state.dropDownActiveItem = "";
       state.dropDownActiveSubItem = "";
     },
+    setWholeState(state, action) {
+      Object.keys(state).forEach((key) => {
+        state[key] = action.payload[key];
+      });
+    },
   },
 });
 

@@ -11,6 +11,11 @@ export const modalSlice = createSlice({
     setIsOpen(state, action) {
       state.isOpen = action.payload;
     },
+    setWholeState(state, action) {
+      Object.keys(state).forEach((key) => {
+        state[key] = action.payload[key];
+      });
+    },
   },
 });
 
