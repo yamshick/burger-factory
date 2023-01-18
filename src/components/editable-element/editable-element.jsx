@@ -4,7 +4,6 @@ export const EditableElement = (props) => {
   const { onChange } = props;
   const element = useRef();
   let elements = React.Children.toArray(props.children);
-  console.log({ "props.children": props.children, elements });
   if (elements.length > 1) {
     throw Error("Can't have more than one child");
   }

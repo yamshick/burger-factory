@@ -1,9 +1,14 @@
 import update from "immutability-helper";
 import { IngredientsGroup } from "./receipt-block-group/group";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const [cards, setCards] = useState(groups);
+
+  useEffect(() => {
+    setCards(groups);
+  }, [groups]);
+
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setCards((prevCards) =>
       update(prevCards, {

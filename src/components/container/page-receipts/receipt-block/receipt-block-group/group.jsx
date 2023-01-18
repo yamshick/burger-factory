@@ -7,7 +7,13 @@ const ItemTypes = {
   CARD: "card",
 };
 
-export const IngredientsGroup = ({ id, receiptBlockId, index, name, moveCard }) => {
+export const IngredientsGroup = ({
+  id,
+  receiptBlockId,
+  index,
+  name,
+  moveCard,
+}) => {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -66,11 +72,7 @@ export const IngredientsGroup = ({ id, receiptBlockId, index, name, moveCard }) 
         type={"checkbox"}
         onChange={console.log}
       />
-      {/*<div>{name}</div>*/}
-      <EditableElement onChange={(event) => {
-        console.log(event)
-        console.log({receiptBlockId})
-      }}>
+      <EditableElement onChange={(event) => {}}>
         <div>{name}</div>
       </EditableElement>
     </div>

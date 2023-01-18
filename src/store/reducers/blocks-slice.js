@@ -35,10 +35,8 @@ export const blocksSlice = createSlice({
           name: groupName,
         });
       }
-      console.log('addGroup', {block, blockId, groupName, blocks: state.receiptBlocks, action, state})
     },
     setWholeState(state, action) {
-      // console.log({state}, {action})
       Object.keys(state).forEach((key) => {
         state[key] = action.payload[key];
       });
