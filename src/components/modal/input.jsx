@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const CreateBlockInput = ({ onEnter }) => {
+export const Input = ({ placeholder, onEnter }) => {
   const [value, setValue] = useState("");
 
   const onKeyDown = (event) => {
@@ -11,5 +11,5 @@ export const CreateBlockInput = ({ onEnter }) => {
   };
   const onChange = (event) => setValue(event.target.value);
 
-  return <input onKeyDown={onKeyDown} value={value} onChange={onChange} />;
+  return <input placeholder={placeholder} onKeyDown={onKeyDown} value={value} onChange={onChange} />;
 };

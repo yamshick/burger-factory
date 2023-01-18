@@ -3,12 +3,12 @@ import { ReceiptBlockHeader } from "./receipt-block-header";
 import { ReceiptBlockActions } from "./receipt-block-actions";
 import { ReceiptBlockTable } from "./receipt-block-table";
 
-export const ReceiptBlock = ({ id, name, group }) => {
+export const ReceiptBlock = ({ id, name, groups }) => {
   return (
     <div className={styles.receiptBlock}>
       <ReceiptBlockHeader id={id} name={name} />
-      <ReceiptBlockActions />
-      <ReceiptBlockTable group={group} />
+      <ReceiptBlockActions id={id} />
+      <ReceiptBlockTable groups={groups} />
     </div>
   );
 };

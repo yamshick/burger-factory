@@ -23,6 +23,17 @@ export const blocksSlice = createSlice({
         state.receiptBlocks.splice(index, 1);
       }
     },
+    addGroup(state, action) {
+      const {blockId, groupName} = action.payload;
+      const block = state.receiptBlocks.find(receipt => receipt.id === blockId)
+
+          if (block) {
+            block.groups.push({
+              id: Date.now(),
+              name: groupName
+            })
+          }
+    },
     setWholeState(state, action) {
       // console.log({state}, {action})
       Object.keys(state).forEach((key) => {

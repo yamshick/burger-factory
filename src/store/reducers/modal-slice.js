@@ -1,21 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isOpen: false,
+  isNewBlockModalOpen: false,
+  isNewGroupModalOpen: false,
+  addGroupModalData: null,
 };
 
 export const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    setIsOpen(state, action) {
-      state.isOpen = action.payload;
+    setIsNewBlockModalOpen(state, action) {
+      state.isNewBlockModalOpen = action.payload;
+    },
+    setIsNewGroupModalOpen(state, action) {
+      state.isNewGroupModalOpen = action.payload;
     },
     setWholeState(state, action) {
       Object.keys(state).forEach((key) => {
         state[key] = action.payload[key];
       });
     },
+    setAddGroupModalData(state, action) {
+      state.addGroupModalData = action.payload;
+    },
+    resetAddGroupModalData(state) {
+      state.addGroupModalData = null;
+    }
   },
 });
 

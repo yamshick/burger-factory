@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReceiptBlock } from "./receipt-block/receipt-block";
 export const PageReceipts = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
-  const { setIsOpen } = modalSlice.actions;
+  const { setIsNewBlockModalOpen } = modalSlice.actions;
   const dispatch = useDispatch();
 
-  const onNewBlockButtonClick = () => dispatch(setIsOpen(true));
+  const onNewBlockButtonClick = () => dispatch(setIsNewBlockModalOpen(true));
 
   return (
     <>
       <Header />
       <div>
-        {receiptBlocks?.map(({ name, id, group }) => (
-          <ReceiptBlock key={id} id={id} name={name} group={group} />
+        {receiptBlocks?.map(({ name, id, groups }) => (
+          <ReceiptBlock key={id} id={id} name={name} groups={groups} />
         ))}
       </div>
       <div>
