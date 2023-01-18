@@ -20,7 +20,8 @@ export const SideBar = () => {
     <div className={styles.sideBarWrapper}>
       <div className={styles.sideBarContainer}>
         <Logo />
-        <div>Добро пожаловать в "Фабрику бургеров"</div>
+        {/*eslint-ignore next-line*/}
+        <div>Добро пожаловать в &quot;Фабрику бургеров&quot;</div>
         <div className={styles.toggleIconWrapper}>
           <ArrowLeft onClick={toggleOpen} />
         </div>
