@@ -1,7 +1,9 @@
 import { useDrag, useDrop } from "react-dnd";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styles from "./group.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
+import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
+import { useDispatch } from "react-redux";
 
 const ItemTypes = {
   CARD: "card",
@@ -57,6 +59,21 @@ export const IngredientsGroup = ({
   });
   drag(drop(ref));
 
+  const [groupName, setGroupName] = useState(name);
+  const { updateGroupName } = blocksSlice.actions;
+  const dispatch = useDispatch();
+  const onEditableElementChange = (value) => {
+    setGroupName(value);
+  };
+
+  const onEditableElementBlur = () => {
+    if (groupName) {
+      dispatch(
+        updateGroupName({ blockId: receiptBlockId, groupId: id, groupName })
+      );
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -72,7 +89,10 @@ export const IngredientsGroup = ({
         type={"checkbox"}
         onChange={console.log}
       />
-      <EditableElement onChange={(event) => {}}>
+      <EditableElement
+        onChange={onEditableElementChange}
+        onBlur={onEditableElementBlur}
+      >
         <div>{name}</div>
       </EditableElement>
     </div>

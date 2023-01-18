@@ -36,6 +36,21 @@ export const blocksSlice = createSlice({
         });
       }
     },
+    updateGroupName(state, action) {
+      const { blockId, groupId, groupName } = action.payload;
+      const block = state.receiptBlocks.find(
+        (receipt) => receipt.id === blockId
+      );
+      const blockIndex = state.receiptBlocks.indexOf(block);
+
+      if (blockIndex === -1) return;
+
+      const group = state.receiptBlocks[blockIndex].groups.find(
+        (group) => group.id === groupId
+      );
+      group.name = groupName;
+    },
+
     setWholeState(state, action) {
       Object.keys(state).forEach((key) => {
         state[key] = action.payload[key];
