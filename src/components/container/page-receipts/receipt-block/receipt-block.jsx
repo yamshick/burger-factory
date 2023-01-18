@@ -8,7 +8,7 @@ export const ReceiptBlock = ({ id, name, groups }) => {
     <div className={styles.receiptBlock}>
       <ReceiptBlockHeader id={id} name={name} />
       <ReceiptBlockActions id={id} />
-      <ReceiptBlockTable groups={groups} />
+      <ReceiptBlockTable receiptBlockId={id} groups={groups} />
     </div>
   );
 };

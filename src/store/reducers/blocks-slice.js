@@ -35,6 +35,7 @@ export const blocksSlice = createSlice({
           name: groupName,
         });
       }
+      console.log('addGroup', {block, blockId, groupName, blocks: state.receiptBlocks, action, state})
     },
     setWholeState(state, action) {
       // console.log({state}, {action})

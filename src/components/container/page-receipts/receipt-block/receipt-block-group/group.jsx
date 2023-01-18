@@ -1,18 +1,13 @@
 import { useDrag, useDrop } from "react-dnd";
 import { useRef } from "react";
+import styles from "./group.module.scss";
+import { EditableElement } from "../../../../editable-element/editable-element";
 
 const ItemTypes = {
   CARD: "card",
 };
 
-const style = {
-  border: "1px dashed gray",
-  padding: "0.5rem 1rem",
-  marginBottom: ".5rem",
-  backgroundColor: "white",
-  cursor: "move",
-};
-export const IngredientsGroup = ({ id, index, name, moveCard }) => {
+export const IngredientsGroup = ({ id, receiptBlockId, index, name, moveCard }) => {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.CARD,
@@ -54,12 +49,30 @@ export const IngredientsGroup = ({ id, index, name, moveCard }) => {
       isDragging: monitor.isDragging(),
     }),
   });
-  const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
   return (
-    <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-      {name}
+    <div
+      ref={ref}
+      className={
+        isDragging
+          ? [styles.group, styles.groupIsDragging].join(" ")
+          : styles.group
+      }
+      data-handler-id={handlerId}
+    >
+      <input
+        className={styles.checkbox}
+        type={"checkbox"}
+        onChange={console.log}
+      />
+      {/*<div>{name}</div>*/}
+      <EditableElement onChange={(event) => {
+        console.log(event)
+        console.log({receiptBlockId})
+      }}>
+        <div>{name}</div>
+      </EditableElement>
     </div>
   );
 };
