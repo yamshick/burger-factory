@@ -9,8 +9,19 @@ export const blocksSlice = createSlice({
   initialState,
   reducers: {
     addBlock(state, action) {
-      console.log({ action });
-      state.receiptBlocks.push({ name: action.payload, groups: [] });
+      state.receiptBlocks.push({
+        name: action.payload,
+        id: Date.now(),
+        groups: [],
+      });
+    },
+    removeBlock(state, action) {
+      const index = state.receiptBlocks.findIndex(
+        ({ id }) => id === action.payload
+      );
+      if (index > -1) {
+        state.receiptBlocks.splice(index, 1);
+      }
     },
   },
 });

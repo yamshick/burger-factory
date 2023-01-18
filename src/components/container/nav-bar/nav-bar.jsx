@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import styles from "./hav-bar.module.scss";
-import { PageReceipts } from "../page-receipts";
+import { PageReceipts } from "../page-receipts/page-receipts";
 import { BreadCrumbs } from "../bread-crumbs/bread-crumbs";
 
 export const NavBar = () => {
