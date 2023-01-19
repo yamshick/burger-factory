@@ -79,6 +79,8 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(
         (receipt) => receipt.id === blockId
       );
+      if (!block.groups?.length) return;
+
       state.selectedGroupIds[blockId] = [];
       block.groups.forEach(({ id }) =>
         state.selectedGroupIds[blockId].push(id)

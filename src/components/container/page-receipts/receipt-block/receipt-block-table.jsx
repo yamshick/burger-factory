@@ -25,18 +25,21 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
+  const [isChecked, setIsChecked] = useState(false)
   const onCheck = (event) => {
     const { checked } = event.target;
     if (checked) {
+      setIsChecked(true)
       dispatch(selectAllGroups({ blockId: receiptBlockId }));
     } else {
+      setIsChecked(false)
       dispatch(resetGroupSelection());
     }
   };
   return (
     <div style={{ marginTop: "5px" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <input type={"checkbox"} onChange={onCheck} />
+        <input type={"checkbox"} onChange={onCheck} checked={isChecked}/>
         <div> Название </div>
         <div> Вес </div>
         <div> Ккал </div>
