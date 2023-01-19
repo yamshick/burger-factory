@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  uniqueId: 0,
   receiptBlocks: [],
   selectedGroupIds: {},
   selectedIngredientIds: [],
@@ -13,7 +14,7 @@ export const blocksSlice = createSlice({
     addBlock(state, action) {
       state.receiptBlocks.push({
         name: action.payload,
-        id: Date.now(),
+        id: state.uniqueId++,
         groups: [],
       });
     },
@@ -33,7 +34,7 @@ export const blocksSlice = createSlice({
 
       if (block) {
         block.groups.push({
-          id: Date.now(),
+          id: state.uniqueId++,
           name: groupName,
         });
       }
@@ -126,7 +127,7 @@ export const blocksSlice = createSlice({
 
       state.selectedGroupIds[blockId].forEach((groupId) => {
         const group = block.groups.find(({ id }) => id === groupId);
-        block.groups.push({ ...group, id: Date.now() });
+        block.groups.push({ ...group, id: state.uniqueId++ });
       });
 
       state.selectedGroupIds = {};
