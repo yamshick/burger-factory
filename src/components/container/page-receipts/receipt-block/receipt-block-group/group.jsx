@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import styles from "./group.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ItemTypes = {
   CARD: "card",
@@ -74,6 +74,20 @@ export const IngredientsGroup = ({
     }
   };
 
+  const { selectGroup, unSelectGroup } = blocksSlice.actions;
+  const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
+  const isChecked = selectedGroupIds[receiptBlockId]?.includes(id);
+  const isDisabled =
+    Object.keys(selectedGroupIds).length &&
+    Number(Object.keys(selectedGroupIds)[0]) !== receiptBlockId;
+  const onCheck = (event) => {
+    const { checked } = event.target;
+
+    checked
+      ? dispatch(selectGroup({ blockId: receiptBlockId, groupId: id }))
+      : dispatch(unSelectGroup({ blockId: receiptBlockId, groupId: id }));
+  };
+
   return (
     <div
       ref={ref}
@@ -87,13 +101,15 @@ export const IngredientsGroup = ({
       <input
         className={styles.checkbox}
         type={"checkbox"}
-        onChange={console.log}
+        onChange={onCheck}
+        checked={isChecked}
+        disabled={isDisabled}
       />
       <EditableElement
         onChange={onEditableElementChange}
         onBlur={onEditableElementBlur}
       >
-        <div>{name}</div>
+        <div className={styles.editableElement}>{name}</div>
       </EditableElement>
     </div>
   );

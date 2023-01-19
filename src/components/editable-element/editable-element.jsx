@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 
-const defaultValue = "default";
 export const EditableElement = (props) => {
   const { onChange, onBlur } = props;
   const element = useRef();
@@ -17,9 +16,6 @@ export const EditableElement = (props) => {
 
   const onBlurEvent = () => {
     const value = element.current?.value || element.current?.innerText;
-    // if (!value) {
-    //   element.current?.innerText = defaultValue
-    // }
     if (onBlur) onBlur(value);
   };
 

@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   receiptBlocks: [],
+  selectedGroupIds: {},
+  selectedIngredientIds: [],
 };
 
 export const blocksSlice = createSlice({
@@ -49,6 +51,48 @@ export const blocksSlice = createSlice({
         (group) => group.id === groupId
       );
       group.name = groupName;
+    },
+
+    selectGroup(state, action) {
+      const { blockId, groupId } = action.payload;
+      // console.log({'state.selectedGroupIds': state.selectedGroupIds, state: JSON.stringify(state)})
+      if (state.selectedGroupIds[blockId]) {
+        state.selectedGroupIds[blockId].push(groupId);
+      } else {
+        console.log({
+          "firstSelection || state.selectedGroupIds": JSON.stringify(
+            state.selectedGroupIds
+          ),
+        });
+        state.selectedGroupIds[blockId] = [groupId];
+      }
+      console.log({
+        "state.selectedGroupIds": JSON.stringify(state.selectedGroupIds),
+      });
+    },
+
+    unSelectGroup(state, action) {
+      const { blockId, groupId } = action.payload;
+      const index = state.selectedGroupIds[blockId]?.indexOf(groupId);
+      if (index > -1) {
+        state.selectedGroupIds[blockId].splice(index, 1);
+      }
+    },
+
+    selectAllGroups(state, action) {
+      const { blockId } = action.payload;
+      const block = state.receiptBlocks.find(
+        (receipt) => receipt.id === blockId
+      );
+      state.selectedGroupIds[blockId] = [];
+      block.groups.forEach(({ id }) =>
+        state.selectedGroupIds[blockId].push(id)
+      );
+    },
+
+    resetGroupSelection(state, action) {
+      const { blockId } = action.payload;
+      delete state.selectedGroupIds[blockId];
     },
 
     setWholeState(state, action) {
