@@ -1,10 +1,10 @@
-import RemoveIcon from "./remove-icon.svg";
-import CopyIcon from "./copy-icon.svg";
-import RemoveSelectionIcon from "./remove-selection-icon.svg";
+import RemoveIcon from "assets/icons/close-cross.svg";
+import CopyIcon from "assets/icons/copy-icon.svg";
+import RemoveSelectionIcon from "assets/icons/remove-selection-icon.svg";
 
 import styles from "./info-panel.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { blocksSlice } from "../../../../store/reducers/blocks-slice";
+import { blocksSlice } from "store/reducers/blocks-slice";
 export const InfoPanel = ({}) => {
   const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
   const dispatch = useDispatch();

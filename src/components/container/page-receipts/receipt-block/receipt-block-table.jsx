@@ -1,8 +1,8 @@
 import update from "immutability-helper";
 import { IngredientsGroup } from "./receipt-block-group/group";
 import { useCallback, useEffect, useState } from "react";
-import {blocksSlice} from "../../../../store/reducers/blocks-slice";
-import {useDispatch} from "react-redux";
+import { blocksSlice } from "../../../../store/reducers/blocks-slice";
+import { useDispatch } from "react-redux";
 
 export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const [cards, setCards] = useState(groups);
@@ -22,21 +22,21 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
     );
   }, []);
 
-  const {selectAllGroups, resetGroupSelection} = blocksSlice.actions
+  const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
-  const onCheck = event => {
-    const {checked} = event.target
+  const onCheck = (event) => {
+    const { checked } = event.target;
     if (checked) {
-      dispatch(selectAllGroups({blockId: receiptBlockId}))
+      dispatch(selectAllGroups({ blockId: receiptBlockId }));
     } else {
-      dispatch(resetGroupSelection())
+      dispatch(resetGroupSelection());
     }
-  }
+  };
   return (
     <div style={{ marginTop: "5px" }}>
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <input type={'checkbox'} onChange={onCheck}/>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <input type={"checkbox"} onChange={onCheck} />
         <div> Название </div>
         <div> Вес </div>
         <div> Ккал </div>

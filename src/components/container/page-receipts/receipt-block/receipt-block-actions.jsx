@@ -1,5 +1,5 @@
 import styles from "./receipt-block.module.scss";
-import RedPlus from "./red-plus.svg";
+import RedPlus from "../../../../assets/icons/red-plus.svg";
 import { useDispatch } from "react-redux";
 import { modalSlice } from "../../../../store/reducers/modal-slice";
 

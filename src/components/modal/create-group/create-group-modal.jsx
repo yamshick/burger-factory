@@ -50,28 +50,16 @@ export const CreateGroupModal = () => {
     <Modal isOpen={isNewGroupModalOpen} onClose={onClose}>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
-          <Input
-            placeholder={"Название группы"}
-            onChange={onGroupNameChange}
-          />
+          <Input placeholder={"Название группы"} onChange={onGroupNameChange} />
         </div>
         <div className={styles.inputContainer}>
-          <Input
-            placeholder={"Вес"}
-            onChange={onWeightChange}
-          />
+          <Input placeholder={"Вес"} onChange={onWeightChange} />
         </div>
         <div className={styles.inputContainer}>
-          <Input
-            placeholder={"Ккал"}
-            onChange={onCaloriesChange}
-          />
+          <Input placeholder={"Ккал"} onChange={onCaloriesChange} />
         </div>
         <div className={styles.inputContainer}>
-          <Input
-            placeholder={"Примечания"}
-            onChange={onNotesChange}
-          />
+          <Input placeholder={"Примечания"} onChange={onNotesChange} />
         </div>
         <div className={styles.inputContainer}>
           <button onClick={onAddGroupClick} disabled={isAddGroupButtonDisabled}>
