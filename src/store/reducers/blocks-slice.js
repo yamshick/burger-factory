@@ -59,11 +59,6 @@ export const blocksSlice = createSlice({
       if (state.selectedGroupIds[blockId]) {
         state.selectedGroupIds[blockId].push(groupId);
       } else {
-        console.log({
-          "firstSelection || state.selectedGroupIds": JSON.stringify(
-            state.selectedGroupIds
-          ),
-        });
         state.selectedGroupIds[blockId] = [groupId];
       }
       console.log({
@@ -77,6 +72,12 @@ export const blocksSlice = createSlice({
       if (index > -1) {
         state.selectedGroupIds[blockId].splice(index, 1);
       }
+      if (state.selectedGroupIds[blockId]?.length === 0) {
+        delete state.selectedGroupIds[blockId];
+      }
+      console.log({
+        "state.selectedGroupIds": JSON.stringify(state.selectedGroupIds),
+      });
     },
 
     selectAllGroups(state, action) {

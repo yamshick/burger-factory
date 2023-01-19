@@ -3,6 +3,7 @@ import { NewBlockButton } from "./new-block-button/new-block-button";
 import { modalSlice } from "../../../store/reducers/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { ReceiptBlock } from "./receipt-block/receipt-block";
+import { InfoPanel } from "./info-panel/info-panel";
 export const PageReceipts = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
   const { setIsNewBlockModalOpen } = modalSlice.actions;
@@ -21,6 +22,7 @@ export const PageReceipts = () => {
       <div>
         <NewBlockButton onClick={onNewBlockButtonClick} />
       </div>
+      <InfoPanel />
     </>
   );
 };

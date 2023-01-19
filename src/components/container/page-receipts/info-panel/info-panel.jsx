@@ -5,7 +5,12 @@ import RemoveSelectionIcon from "./remove-selection-icon.svg";
 import styles from "./info-panel.module.scss";
 import { useSelector } from "react-redux";
 export const InfoPanel = ({}) => {
-  // const {} = useSelector(state => )
+  const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
+  console.log(JSON.stringify(selectedGroupIds));
+  const selectedGroupsBlock = Object.keys(selectedGroupIds)[0];
+
+  if (!selectedGroupsBlock) return null;
+
   return (
     <div className={styles.infoPanelContainer}>
       <button>
