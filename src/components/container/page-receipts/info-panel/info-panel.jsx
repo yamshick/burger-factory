@@ -3,25 +3,31 @@ import CopyIcon from "./copy-icon.svg";
 import RemoveSelectionIcon from "./remove-selection-icon.svg";
 
 import styles from "./info-panel.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { blocksSlice } from "../../../../store/reducers/blocks-slice";
 export const InfoPanel = ({}) => {
   const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
-  console.log(JSON.stringify(selectedGroupIds));
-  const selectedGroupsBlock = Object.keys(selectedGroupIds)[0];
+  const dispatch = useDispatch();
+  const { removeSelectedGroups, resetGroupSelection, copySelectedGroups } =
+    blocksSlice.actions;
+  const selectedGroupsBlockId = Object.keys(selectedGroupIds)[0];
 
-  if (!selectedGroupsBlock) return null;
+  if (!selectedGroupsBlockId) return null;
 
+  const onRemoveGroups = () => dispatch(removeSelectedGroups());
+  const onRemoveSelection = () => dispatch(resetGroupSelection());
+  const onCopySelectedGroups = () => dispatch(copySelectedGroups());
   return (
     <div className={styles.infoPanelContainer}>
-      <button>
+      <button onClick={onRemoveGroups}>
         <RemoveIcon />
         Удалить
       </button>
-      <button>
+      <button onClick={onCopySelectedGroups}>
         <CopyIcon />
         Копировать
       </button>
-      <button>
+      <button onClick={onRemoveSelection}>
         <RemoveSelectionIcon />
         Снять выделение
       </button>

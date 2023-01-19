@@ -91,9 +91,45 @@ export const blocksSlice = createSlice({
       );
     },
 
-    resetGroupSelection(state, action) {
-      const { blockId } = action.payload;
+    resetGroupSelection(state) {
+      const blockId = Object.keys(state.selectedGroupIds)[0];
+      if (!blockId) return;
+
       delete state.selectedGroupIds[blockId];
+      console.log(JSON.stringify(state.selectedGroupIds), { blockId });
+    },
+
+    removeSelectedGroups(state) {
+      const blockId = Object.keys(state.selectedGroupIds)[0];
+      if (!blockId) return;
+
+      const block = state.receiptBlocks.find(
+        ({ id }) => id === Number(blockId)
+      );
+      if (!block) return;
+
+      block.groups = block.groups.filter(
+        ({ id }) => !state.selectedGroupIds[blockId].includes(id)
+      );
+
+      state.selectedGroupIds = {};
+    },
+
+    copySelectedGroups(state) {
+      const blockId = Object.keys(state.selectedGroupIds)[0];
+      if (!blockId) return;
+
+      const block = state.receiptBlocks.find(
+        ({ id }) => id === Number(blockId)
+      );
+      if (!block) return;
+
+      state.selectedGroupIds[blockId].forEach((groupId) => {
+        const group = block.groups.find(({ id }) => id === groupId);
+        block.groups.push({ ...group, id: Date.now() });
+      });
+
+      state.selectedGroupIds = {};
     },
 
     setWholeState(state, action) {
