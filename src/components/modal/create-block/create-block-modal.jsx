@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../modal";
 import { Input } from "../input";
 import { blocksSlice } from "../../../store/reducers/blocks-slice";
+import {useState} from "react";
 
 export const CreateBlockModal = () => {
   const { setIsNewBlockModalOpen } = modalSlice.actions;
@@ -10,14 +11,17 @@ export const CreateBlockModal = () => {
   const { isNewBlockModalOpen } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
 
-  const onEnter = (blockName) => {
+  const [blockName, setBlockName] = useState('')
+  const onChange = value => setBlockName(value)
+  const onClick = () => {
     dispatch(addBlock(blockName));
     dispatch(setIsNewBlockModalOpen(false));
   };
-  const onClose = () => dispatch(setIsOpen(false));
+  const onClose = () => dispatch(setIsNewBlockModalOpen(false));
   return (
     <Modal isOpen={isNewBlockModalOpen} onClose={onClose}>
-      <Input onEnter={onEnter} />
+      <Input onChange={onChange} />
+      <button onClick={onClick}>Добавить блок</button>
     </Modal>
   );
 };

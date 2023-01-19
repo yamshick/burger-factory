@@ -1,6 +1,8 @@
 import update from "immutability-helper";
 import { IngredientsGroup } from "./receipt-block-group/group";
 import { useCallback, useEffect, useState } from "react";
+import {blocksSlice} from "../../../../store/reducers/blocks-slice";
+import {useDispatch} from "react-redux";
 
 export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const [cards, setCards] = useState(groups);
@@ -20,14 +22,35 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
     );
   }, []);
 
+  const {selectAllGroups, resetGroupSelection} = blocksSlice.actions
+  const dispatch = useDispatch();
+
+  const onCheck = event => {
+    const {checked} = event.target
+    if (checked) {
+      dispatch(selectAllGroups({blockId: receiptBlockId}))
+    } else {
+      dispatch(resetGroupSelection())
+    }
+  }
   return (
     <div style={{ marginTop: "5px" }}>
-      {cards.map(({ id, name }, index) => (
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <input type={'checkbox'} onChange={onCheck}/>
+        <div> Название </div>
+        <div> Вес </div>
+        <div> Ккал </div>
+        <div> Примечания </div>
+      </div>
+      {cards.map(({ id, name, weight, calories, notes }, index) => (
         <IngredientsGroup
           key={id}
           id={id}
           receiptBlockId={receiptBlockId}
           name={name}
+          weight={weight}
+          calories={calories}
+          notes={notes}
           index={index}
           moveCard={moveCard}
         />

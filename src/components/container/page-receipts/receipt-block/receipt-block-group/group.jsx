@@ -14,6 +14,7 @@ export const IngredientsGroup = ({
   receiptBlockId,
   index,
   name,
+    weight, calories, notes,
   moveCard,
 }) => {
   const ref = useRef(null);
@@ -105,12 +106,26 @@ export const IngredientsGroup = ({
         checked={isChecked}
         disabled={isDisabled}
       />
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+
       <EditableElement
         onChange={onEditableElementChange}
         onBlur={onEditableElementBlur}
       >
-        <div className={styles.editableElement}>{name}</div>
+        <div className={styles.editableElement}>
+          {name}
+        </div>
       </EditableElement>
+      <div>
+        {weight}
+      </div>
+        <div>
+          {calories}
+        </div>
+        <div>
+          {notes}
+        </div>
+      </div>
     </div>
   );
 };

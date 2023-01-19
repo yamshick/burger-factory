@@ -27,15 +27,15 @@ export const blocksSlice = createSlice({
       }
     },
     addGroup(state, action) {
-      const { blockId, groupName } = action.payload;
+      const { blockId, group } = action.payload;
       const block = state.receiptBlocks.find(
         (receipt) => receipt.id === blockId
       );
 
       if (block) {
         block.groups.push({
+          ...group,
           id: state.uniqueId++,
-          name: groupName,
         });
       }
     },
@@ -56,15 +56,11 @@ export const blocksSlice = createSlice({
 
     selectGroup(state, action) {
       const { blockId, groupId } = action.payload;
-      // console.log({'state.selectedGroupIds': state.selectedGroupIds, state: JSON.stringify(state)})
       if (state.selectedGroupIds[blockId]) {
         state.selectedGroupIds[blockId].push(groupId);
       } else {
         state.selectedGroupIds[blockId] = [groupId];
       }
-      console.log({
-        "state.selectedGroupIds": JSON.stringify(state.selectedGroupIds),
-      });
     },
 
     unSelectGroup(state, action) {
@@ -76,9 +72,6 @@ export const blocksSlice = createSlice({
       if (state.selectedGroupIds[blockId]?.length === 0) {
         delete state.selectedGroupIds[blockId];
       }
-      console.log({
-        "state.selectedGroupIds": JSON.stringify(state.selectedGroupIds),
-      });
     },
 
     selectAllGroups(state, action) {
@@ -97,7 +90,6 @@ export const blocksSlice = createSlice({
       if (!blockId) return;
 
       delete state.selectedGroupIds[blockId];
-      console.log(JSON.stringify(state.selectedGroupIds), { blockId });
     },
 
     removeSelectedGroups(state) {
