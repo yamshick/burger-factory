@@ -9,8 +9,8 @@ export const headerNavSlice = createSlice({
   name: "sideBar",
   initialState: LOCAL_STORAGE_STATE.headerNavReducer || initialState,
   reducers: {
-    setActiveHeaderNavItem(state, payload) {
-      state.activeHeaderNavItem = payload;
+    setActiveHeaderNavItem(state, action) {
+      state.activeHeaderNavItem = action.payload;
     },
   },
 });

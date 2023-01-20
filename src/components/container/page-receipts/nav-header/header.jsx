@@ -1,6 +1,6 @@
 import styles from "./header.module.scss";
 import { headerNavSlice } from "store/reducers/header-nav-slice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { headerNavItems } from "../../../../app-constants";
 
 const NavItem = ({ item, onItemClick, active }) => {
@@ -23,7 +23,8 @@ export const Header = () => {
     (state) => state.headerNavReducer
   );
   const { setActiveHeaderNavItem } = headerNavSlice.actions;
-  const onItemClick = (item) => setActiveHeaderNavItem(item.id);
+  const dispatch = useDispatch();
+  const onItemClick = (item) => dispatch(setActiveHeaderNavItem(item));
 
   return (
     <div className={styles.headerContainer}>
@@ -31,7 +32,12 @@ export const Header = () => {
         <NavItem
           key={item.id}
           item={item}
-          active={item.id === activeHeaderNavItem?.id}
+          active={
+            console.log({
+              "item.id": item.id,
+              activeHeaderNavItem: activeHeaderNavItem,
+            }) || item.id === activeHeaderNavItem?.id
+          }
           onItemClick={onItemClick}
         />
       ))}
