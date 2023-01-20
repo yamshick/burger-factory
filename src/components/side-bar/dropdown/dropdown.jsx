@@ -1,4 +1,4 @@
-import Chevron from "./chevron.svg";
+import Chevron from "../../../assets/icons/chevron.svg";
 import { useState } from "react";
 import { dropDownItemsMap, dropDownSubItemsMap } from "../constants";
 
@@ -14,9 +14,9 @@ export const Dropdown = ({ header, subItems, onSelectSubItem }) => {
       {dropDownItemsMap[header]}
       {isOpen && (
         <ul>
-          {subItems?.map((item) => (
-            <li key={item} onClick={() => onSelectSubItem(item)}>
-              {dropDownSubItemsMap[item]}
+          {subItems?.map(({ id, name }) => (
+            <li key={id} onClick={() => onSelectSubItem({ id, name })}>
+              {dropDownSubItemsMap[name]}
             </li>
           ))}
         </ul>

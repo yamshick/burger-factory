@@ -4,7 +4,7 @@ import { modalSlice } from "../../../store/reducers/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { ReceiptBlock } from "./receipt-block/receipt-block";
 import { InfoPanel } from "./info-panel/info-panel";
-export const PageReceipts = () => {
+export const Index = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
   const { setIsNewBlockModalOpen } = modalSlice.actions;
   const dispatch = useDispatch();

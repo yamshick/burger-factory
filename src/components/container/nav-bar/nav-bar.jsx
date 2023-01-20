@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import styles from "./hav-bar.module.scss";
-import { PageReceipts } from "components/container/page-receipts/page-receipts";
+import { Index } from "components/container/page-receipts";
 import { BreadCrumbs } from "../bread-crumbs/bread-crumbs";
 
 export const NavBar = () => {
@@ -24,7 +24,7 @@ export const NavBar = () => {
         <BreadCrumbs />
 
         <Routes>
-          <Route path="/" element={<PageReceipts />}></Route>
+          <Route path="/" element={<Index />}></Route>
           <Route path="/price-list" element={<PriceList />}></Route>
           <Route path="/combo-sets" element={<ComboSets />}></Route>
         </Routes>

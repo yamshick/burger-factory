@@ -1,6 +1,6 @@
 import styles from "./app.module.scss";
 import { SideBar } from "./components/side-bar/side-bar";
-import { Container } from "./components/container/container";
+import { Content } from "./components/container/content";
 import { CreateBlockModal } from "./components/modal/create-block/create-block-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { sideBarSlice } from "./store/reducers/side-bar-slice";
@@ -35,7 +35,7 @@ export const App = () => {
     <div>
       <div className={styles.mainContainer}>
         <SideBar />
-        <Container />
+        <Content />
       </div>
       {isNewBlockModalOpen && <CreateBlockModal />}
       {isNewGroupModalOpen && <CreateGroupModal />}

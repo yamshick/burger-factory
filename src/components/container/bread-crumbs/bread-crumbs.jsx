@@ -28,7 +28,7 @@ export const BreadCrumbs = () => {
 
   const first = locationToBreadCrumbsMap[pathname];
   let second = dropDownItemsMap[dropDownActiveItem];
-  let third = dropDownSubItemsMap[dropDownActiveSubItem];
+  let third = dropDownSubItemsMap[dropDownActiveSubItem?.name];
 
   second = second ? ` / ${second}` : "";
   third = third ? ` / ${third}` : "";
@@ -36,7 +36,7 @@ export const BreadCrumbs = () => {
   return (
     <>
       <div>{`${first}${second}${third}`}</div>
-      {third && <h1>{dropDownSubItemsMap[dropDownActiveSubItem]}</h1>}
+      {third && <h1>{dropDownSubItemsMap[dropDownActiveSubItem?.name]}</h1>}
     </>
   );
 };

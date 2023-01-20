@@ -69,7 +69,10 @@ export const AddIngredientModal = () => {
     <Modal isOpen={isAddIngredientsModalOpen} onClose={onClose}>
       <div className={styles.inputContainer}>
         <Select
-          items={[{ name: "", value: undefined, id: -1 }, ...groups]}
+          items={[
+            { name: "Выберите группу", value: undefined, id: -1 },
+            ...groups,
+          ]}
           value={groupId}
           onSelect={onGroupIdSelect}
         />

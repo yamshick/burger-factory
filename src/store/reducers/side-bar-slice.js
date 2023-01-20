@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dropDownActiveItem: "",
-  dropDownActiveSubItem: "",
+  dropDownActiveItem: null,
+  dropDownActiveSubItem: null,
 };
 
 export const sideBarSlice = createSlice({
@@ -16,8 +16,8 @@ export const sideBarSlice = createSlice({
       state.dropDownActiveSubItem = action.payload;
     },
     reset(state) {
-      state.dropDownActiveItem = "";
-      state.dropDownActiveSubItem = "";
+      state.dropDownActiveItem = null;
+      state.dropDownActiveSubItem = null;
     },
     setWholeState(state, action) {
       Object.keys(state).forEach((key) => {
