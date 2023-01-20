@@ -130,20 +130,17 @@ export const blocksSlice = createSlice({
     addIngredient(state, action) {
       const { blockId, groupId, ingredient } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
-      console.log({ block: JSON.stringify(block) });
       if (!block) return;
 
       const group = block.groups.find(({ id }) => id === Number(groupId));
-      console.log({ group: JSON.stringify(group) });
       if (!group) return;
 
       const newIngredient = { id: state.uniqueId++, ...ingredient };
       if (!group.ingredients) {
         group.ingredients = [newIngredient];
       } else {
-        group.ingredients.push(ingredient);
+        group.ingredients.push(newIngredient);
       }
-      console.log({ group: JSON.stringify(group) });
     },
 
     setWholeState(state, action) {
