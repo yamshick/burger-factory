@@ -1,11 +1,22 @@
 import styles from "./receipt-block.module.scss";
-import RedPlus from "../../../../assets/icons/red-plus.svg";
+import RedPlus from "assets/icons/red-plus.svg";
 import { useDispatch } from "react-redux";
-import { modalSlice } from "../../../../store/reducers/modal-slice";
+import { modalSlice } from "store/reducers/modal-slice";
 
 export const ReceiptBlockActions = ({ id }) => {
   const dispatch = useDispatch();
-  const { setIsNewGroupModalOpen, setAddGroupModalData } = modalSlice.actions;
+  const {
+    setIsNewGroupModalOpen,
+    setAddGroupModalData,
+    setIsAddIngredientsModalOpen,
+    setAddIngredientModalData,
+  } = modalSlice.actions;
+
+  const onAddIngredientClick = () => {
+    dispatch(setIsAddIngredientsModalOpen(true));
+    dispatch(setAddIngredientModalData({ receiptBlockId: id }));
+  };
+
   const onAddGroupClick = () => {
     dispatch(setIsNewGroupModalOpen(true));
     dispatch(setAddGroupModalData({ receiptBlockId: id }));
@@ -13,7 +24,10 @@ export const ReceiptBlockActions = ({ id }) => {
 
   return (
     <div>
-      <button className={styles.receiptBlockActionButton}>
+      <button
+        onClick={onAddIngredientClick}
+        className={styles.receiptBlockActionButton}
+      >
         <RedPlus />
         Ингредиент
       </button>

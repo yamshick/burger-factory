@@ -8,6 +8,7 @@ import { modalSlice } from "./store/reducers/modal-slice";
 import { blocksSlice } from "./store/reducers/blocks-slice";
 import { useEffect } from "react";
 import { CreateGroupModal } from "./components/modal/create-group/create-group-modal";
+import { AddIngredientModal } from "./components/modal/add-ingredient/add-ingredient-modal";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const App = () => {
       </div>
       <CreateBlockModal />
       <CreateGroupModal />
+      <AddIngredientModal />
     </div>
   );
 };

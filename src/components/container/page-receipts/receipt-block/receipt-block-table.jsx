@@ -25,39 +25,42 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(false);
   const onCheck = (event) => {
     const { checked } = event.target;
     if (checked) {
-      setIsChecked(true)
+      setIsChecked(true);
       dispatch(selectAllGroups({ blockId: receiptBlockId }));
     } else {
-      setIsChecked(false)
+      setIsChecked(false);
       dispatch(resetGroupSelection());
     }
   };
   return (
     <div style={{ marginTop: "5px" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <input type={"checkbox"} onChange={onCheck} checked={isChecked}/>
+        <input type={"checkbox"} onChange={onCheck} checked={isChecked} />
         <div> Название </div>
         <div> Вес </div>
         <div> Ккал </div>
         <div> Примечания </div>
       </div>
-      {cards.map(({ id, name, weight, calories, notes }, index) => (
-        <IngredientsGroup
-          key={id}
-          id={id}
-          receiptBlockId={receiptBlockId}
-          name={name}
-          weight={weight}
-          calories={calories}
-          notes={notes}
-          index={index}
-          moveCard={moveCard}
-        />
-      ))}
+      {cards.map(
+        ({ id, name, weight, calories, notes, ingredients }, index) => (
+          <IngredientsGroup
+            key={id}
+            id={id}
+            receiptBlockId={receiptBlockId}
+            name={name}
+            weight={weight}
+            calories={calories}
+            notes={notes}
+            ingredients={ingredients}
+            index={index}
+            moveCard={moveCard}
+          />
+        )
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import styles from "./group.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
+import { Ingredients } from "../ingredients/ingredients";
 
 const ItemTypes = {
   CARD: "card",
@@ -18,6 +19,7 @@ export const IngredientsGroup = ({
   calories,
   notes,
   moveCard,
+  ingredients,
 }) => {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
@@ -119,6 +121,7 @@ export const IngredientsGroup = ({
         <div>{calories}</div>
         <div>{notes}</div>
       </div>
+      <Ingredients ingredients={ingredients} />
     </div>
   );
 };

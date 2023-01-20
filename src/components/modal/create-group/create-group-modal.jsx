@@ -1,7 +1,7 @@
-import { modalSlice } from "../../../store/reducers/modal-slice";
+import { modalSlice } from "store/reducers/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../modal";
-import { blocksSlice } from "../../../store/reducers/blocks-slice";
+import { blocksSlice } from "store/reducers/blocks-slice";
 import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./create-group-modal.modules.scss";
@@ -50,16 +50,32 @@ export const CreateGroupModal = () => {
     <Modal isOpen={isNewGroupModalOpen} onClose={onClose}>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
-          <Input type={'text'} placeholder={"Название группы"} onChange={onGroupNameChange} />
+          <Input
+            type={"text"}
+            placeholder={"Название группы"}
+            onChange={onGroupNameChange}
+          />
         </div>
         <div className={styles.inputContainer}>
-          <Input type={'number'} placeholder={"Вес"} onChange={onWeightChange} />
+          <Input
+            type={"number"}
+            placeholder={"Вес"}
+            onChange={onWeightChange}
+          />
         </div>
         <div className={styles.inputContainer}>
-          <Input type={'number'} placeholder={"Ккал"} onChange={onCaloriesChange} />
+          <Input
+            type={"number"}
+            placeholder={"Ккал"}
+            onChange={onCaloriesChange}
+          />
         </div>
         <div className={styles.inputContainer}>
-          <Input type={'text'} placeholder={"Примечания"} onChange={onNotesChange} />
+          <Input
+            type={"text"}
+            placeholder={"Примечания"}
+            onChange={onNotesChange}
+          />
         </div>
         <div className={styles.inputContainer}>
           <button onClick={onAddGroupClick} disabled={isAddGroupButtonDisabled}>
