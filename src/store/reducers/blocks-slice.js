@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  uniqueId: 0,
+  // whole app starting uniqueId
+  // before localStorage init
+  uniqueId: 12,
   receiptBlocks: [],
   selectedGroupIds: {},
   selectedIngredientIds: [],
@@ -12,9 +14,11 @@ export const blocksSlice = createSlice({
   initialState,
   reducers: {
     addBlock(state, action) {
+      const { name, snackId } = action.payload;
       state.receiptBlocks.push({
-        name: action.payload,
         id: state.uniqueId++,
+        name,
+        snackId,
         groups: [],
       });
     },
@@ -139,6 +143,7 @@ export const blocksSlice = createSlice({
       const newBlock = {
         id: state.uniqueId++,
         name: "Новый блок",
+        snackId: block.snackId,
         groups: newGroups,
       };
       state.receiptBlocks.push(newBlock);
