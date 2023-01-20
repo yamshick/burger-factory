@@ -39,6 +39,18 @@ export const blocksSlice = createSlice({
         });
       }
     },
+
+    removeGroup(state, action) {
+      const { blockId, groupId } = action.payload;
+      const block = state.receiptBlocks.find(({ id }) => id === blockId);
+      if (!block) return;
+
+      const groupIndex = block.groups.findIndex(({ id }) => id === groupId);
+      if (groupIndex > -1) {
+        block.groups.splice(groupIndex, 1);
+      }
+    },
+
     updateGroupName(state, action) {
       const { blockId, groupId, groupName } = action.payload;
       const block = state.receiptBlocks.find(
@@ -132,14 +144,35 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const group = block.groups.find(({ id }) => id === Number(groupId));
-      if (!group) return;
-
       const newIngredient = { id: state.uniqueId++, ...ingredient };
+
+      const group = block.groups.find(({ id }) => id === Number(groupId));
+      if (!group) {
+        block.groups.push(newIngredient);
+        return;
+      }
+
       if (!group.ingredients) {
         group.ingredients = [newIngredient];
       } else {
         group.ingredients.push(newIngredient);
+      }
+    },
+
+    removeIngredient(state, action) {
+      const { blockId, groupId, ingredientId } = action.payload;
+
+      const block = state.receiptBlocks.find(({ id }) => id === blockId);
+      if (!block) return;
+
+      const group = block.groups.find(({ id }) => id === Number(groupId));
+      if (!group) return;
+
+      const ingredientIndex = group.ingredients.findIndex(
+        ({ id }) => id === ingredientId
+      );
+      if (ingredientIndex > -1) {
+        group.ingredients.splice(ingredientIndex, 1);
       }
     },
 

@@ -5,6 +5,7 @@ import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Ingredients } from "../ingredients/ingredients";
+import CloseCross from "assets/icons/close-cross.svg";
 
 const ItemTypes = {
   CARD: "card",
@@ -65,7 +66,7 @@ export const IngredientsGroup = ({
   drag(drop(ref));
 
   const [groupName, setGroupName] = useState(name);
-  const { updateGroupName } = blocksSlice.actions;
+  const { updateGroupName, removeGroup } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onEditableElementChange = (value) => {
     setGroupName(value);
@@ -92,6 +93,9 @@ export const IngredientsGroup = ({
       ? dispatch(selectGroup({ blockId: receiptBlockId, groupId: id }))
       : dispatch(unSelectGroup({ blockId: receiptBlockId, groupId: id }));
   };
+
+  const onGroupRemoveClick = () =>
+    dispatch(removeGroup({ blockId: receiptBlockId, groupId: id }));
 
   return (
     <div
@@ -120,8 +124,13 @@ export const IngredientsGroup = ({
         <div>{weight}</div>
         <div>{calories}</div>
         <div>{notes}</div>
+        <CloseCross onClick={onGroupRemoveClick} />
       </div>
-      <Ingredients ingredients={ingredients} />
+      <Ingredients
+        ingredients={ingredients}
+        blockId={receiptBlockId}
+        groupId={id}
+      />
     </div>
   );
 };

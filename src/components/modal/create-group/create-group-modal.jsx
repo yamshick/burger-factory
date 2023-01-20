@@ -5,6 +5,7 @@ import { blocksSlice } from "store/reducers/blocks-slice";
 import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./create-group-modal.modules.scss";
+import { blockItemsTypes } from "../../../constants";
 
 export const CreateGroupModal = () => {
   const { setIsNewGroupModalOpen, resetAddGroupModalData } = modalSlice.actions;
@@ -40,6 +41,7 @@ export const CreateGroupModal = () => {
           weight,
           calories,
           notes,
+          type: blockItemsTypes.GROUP,
         },
       })
     );

@@ -6,6 +6,7 @@ import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./add-ingredient-modal.module.scss";
 import { Select } from "../select";
+import { blockItemsTypes } from "../../../constants";
 
 export const AddIngredientModal = () => {
   const { setIsAddIngredientsModalOpen, resetAddIngredientModalData } =
@@ -17,7 +18,10 @@ export const AddIngredientModal = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
 
   const blockId = addIngredientsModalData?.receiptBlockId;
-  const groups = receiptBlocks?.find(({ id }) => id === blockId)?.groups || [];
+  const groups =
+    receiptBlocks
+      ?.find(({ id }) => id === blockId)
+      ?.groups?.filter(({ type }) => type === blockItemsTypes.GROUP) || [];
 
   const dispatch = useDispatch();
 
@@ -27,7 +31,7 @@ export const AddIngredientModal = () => {
     }
   }, [isAddIngredientsModalOpen]);
 
-  const [groupId, setGroupId] = useState(null);
+  const [groupId, setGroupId] = useState(undefined);
   const [ingredientName, setIngredientName] = useState("");
   const [weight, setWeight] = useState("");
   const [calories, setCalories] = useState("");
@@ -43,7 +47,7 @@ export const AddIngredientModal = () => {
 
   const isAddIngredientButtonDisabled =
     !ingredientName && !weight && !calories && !notes;
-  const onAddGroupClick = () => {
+  const onAddIngredientClick = () => {
     dispatch(
       addIngredient({
         blockId: addIngredientsModalData?.receiptBlockId,
@@ -53,6 +57,7 @@ export const AddIngredientModal = () => {
           weight,
           calories,
           notes,
+          type: blockItemsTypes.INGREDIENT,
         },
       })
     );
@@ -63,7 +68,11 @@ export const AddIngredientModal = () => {
   return (
     <Modal isOpen={isAddIngredientsModalOpen} onClose={onClose}>
       <div className={styles.inputContainer}>
-        <Select items={[{name: '', value: null}, ...groups]} value={groupId} onSelect={onGroupIdSelect} />
+        <Select
+          items={[{ name: "", value: undefined, id: -1 }, ...groups]}
+          value={groupId}
+          onSelect={onGroupIdSelect}
+        />
       </div>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
@@ -96,7 +105,7 @@ export const AddIngredientModal = () => {
         </div>
         <div className={styles.inputContainer}>
           <button
-            onClick={onAddGroupClick}
+            onClick={onAddIngredientClick}
             disabled={isAddIngredientButtonDisabled}
           >
             Добавить ингредиент
