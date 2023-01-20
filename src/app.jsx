@@ -21,6 +21,7 @@ export const App = () => {
     isNewGroupModalOpen,
     isAddIngredientsModalOpen,
   } = useSelector((state) => state.modalReducer);
+
   const state = JSON.parse(localStorage.getItem("state"));
   useEffect(() => {
     if (state) {

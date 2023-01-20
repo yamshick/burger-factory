@@ -27,11 +27,7 @@ export const AddIngredientModal = () => {
     }
   }, [isAddIngredientsModalOpen]);
 
-  const defaultGroupId = groups[0]?.id;
-
-  const [groupId, setGroupId] = useState(defaultGroupId);
-  console.log({ groups, defaultGroupId, groupId });
-
+  const [groupId, setGroupId] = useState(null);
   const [ingredientName, setIngredientName] = useState("");
   const [weight, setWeight] = useState("");
   const [calories, setCalories] = useState("");
@@ -64,14 +60,10 @@ export const AddIngredientModal = () => {
   };
   const onClose = () => dispatch(setIsAddIngredientsModalOpen(false));
 
-  if (!groups) {
-    return null;
-  }
-
   return (
     <Modal isOpen={isAddIngredientsModalOpen} onClose={onClose}>
       <div className={styles.inputContainer}>
-        <Select items={groups} value={groupId} onSelect={onGroupIdSelect} />
+        <Select items={[{name: '', value: null}, ...groups]} value={groupId} onSelect={onGroupIdSelect} />
       </div>
       <div className={styles.container}>
         <div className={styles.inputContainer}>
