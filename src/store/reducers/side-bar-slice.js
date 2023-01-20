@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_STATE } from "../../app-constants";
 
 const initialState = {
   isSideBarOpen: true,
+  dropDownOpenItems: [],
   dropDownActiveItem: null,
   dropDownActiveSubItem: null,
 };
@@ -13,6 +14,17 @@ export const sideBarSlice = createSlice({
   reducers: {
     setIsSideBarOpen(state, action) {
       state.isSideBarOpen = action.payload;
+    },
+    toggleDropDownActiveItem(state, action) {
+      const item = action.payload;
+      const itemIndex = state.dropDownOpenItems.findIndex(
+        ({ id }) => id === item.id
+      );
+      if (itemIndex > -1) {
+        state.dropDownOpenItems.splice(itemIndex, 1);
+      } else {
+        state.dropDownOpenItems.push(item);
+      }
     },
     setDropDownActiveItem(state, action) {
       state.dropDownActiveItem = action.payload;

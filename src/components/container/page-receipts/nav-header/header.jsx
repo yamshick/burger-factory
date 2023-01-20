@@ -32,12 +32,7 @@ export const Header = () => {
         <NavItem
           key={item.id}
           item={item}
-          active={
-            console.log({
-              "item.id": item.id,
-              activeHeaderNavItem: activeHeaderNavItem,
-            }) || item.id === activeHeaderNavItem?.id
-          }
+          active={item.id === activeHeaderNavItem?.id}
           onItemClick={onItemClick}
         />
       ))}

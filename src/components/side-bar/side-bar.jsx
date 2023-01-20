@@ -37,10 +37,11 @@ export const SideBar = () => {
         {snacksCategories.map(({ id, name, snacks }) => (
           <Dropdown
             key={id}
-            header={name}
-            subItems={snacks}
+            id={id}
+            name={name}
+            snacks={snacks}
             onSelectSubItem={(subItem) => {
-              dispatch(setDropDownActiveItem(name));
+              dispatch(setDropDownActiveItem({ id, name, snacks }));
               dispatch(setDropDownActiveSubItem(subItem));
             }}
           />

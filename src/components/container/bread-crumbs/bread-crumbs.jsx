@@ -27,7 +27,7 @@ export const BreadCrumbs = () => {
   }, [pathname]);
 
   const first = locationToBreadCrumbsMap[pathname];
-  let second = dropDownItemsMap[dropDownActiveItem];
+  let second = dropDownItemsMap[dropDownActiveItem?.name];
   let third = dropDownSubItemsMap[dropDownActiveSubItem?.name];
 
   second = second ? ` / ${second}` : "";
