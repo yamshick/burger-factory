@@ -131,10 +131,17 @@ export const blocksSlice = createSlice({
       );
       if (!block) return;
 
+      const newGroups = [];
       state.selectedGroupIds[blockId].forEach((groupId) => {
         const group = block.groups.find(({ id }) => id === groupId);
-        block.groups.push({ ...group, id: state.uniqueId++ });
+        newGroups.push({ ...group, id: state.uniqueId++ });
       });
+      const newBlock = {
+        id: state.uniqueId++,
+        name: "Новый блок",
+        groups: newGroups,
+      };
+      state.receiptBlocks.push(newBlock);
 
       state.selectedGroupIds = {};
     },

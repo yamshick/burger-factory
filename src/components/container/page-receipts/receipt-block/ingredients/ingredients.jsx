@@ -8,7 +8,7 @@ export const Ingredients = ({ blockId, groupId, ingredients }) => {
     <>
       {ingredients?.map(
         ({ id, name, weight, calories, notes }) =>
-          console.log("ingrs", { id }) || (
+          (
             <div
               key={id}
               style={{
