@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_STATE } from "../../app-constants";
 
 const initialState = {
   // whole app starting uniqueId
@@ -11,7 +12,7 @@ const initialState = {
 
 export const blocksSlice = createSlice({
   name: "blocks",
-  initialState,
+  initialState: LOCAL_STORAGE_STATE.blocksReducer || initialState,
   reducers: {
     addBlock(state, action) {
       const { name, snackId } = action.payload;
@@ -186,12 +187,6 @@ export const blocksSlice = createSlice({
       if (ingredientIndex > -1) {
         group.ingredients.splice(ingredientIndex, 1);
       }
-    },
-
-    setWholeState(state, action) {
-      Object.keys(state).forEach((key) => {
-        state[key] = action.payload[key];
-      });
     },
   },
 });

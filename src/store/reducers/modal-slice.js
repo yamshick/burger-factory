@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_STATE } from "../../app-constants";
 
 const initialState = {
   isNewBlockModalOpen: false,
@@ -10,7 +11,7 @@ const initialState = {
 
 export const modalSlice = createSlice({
   name: "modal",
-  initialState,
+  initialState: LOCAL_STORAGE_STATE.modalReducer || initialState,
   reducers: {
     setIsNewBlockModalOpen(state, action) {
       state.isNewBlockModalOpen = action.payload;
@@ -32,11 +33,6 @@ export const modalSlice = createSlice({
     },
     resetAddIngredientModalData(state) {
       state.addIngredientsModalData = null;
-    },
-    setWholeState(state, action) {
-      Object.keys(state).forEach((key) => {
-        state[key] = action.payload[key];
-      });
     },
   },
 });

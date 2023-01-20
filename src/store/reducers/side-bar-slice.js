@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_STATE } from "../../app-constants";
 
 const initialState = {
-  isSideBarOpen: false,
+  isSideBarOpen: true,
   dropDownActiveItem: null,
   dropDownActiveSubItem: null,
 };
 
 export const sideBarSlice = createSlice({
   name: "sideBar",
-  initialState,
+  initialState: LOCAL_STORAGE_STATE.sideBarReducer || initialState,
   reducers: {
     setIsSideBarOpen(state, action) {
       state.isSideBarOpen = action.payload;
@@ -22,12 +23,6 @@ export const sideBarSlice = createSlice({
     reset(state) {
       state.dropDownActiveItem = null;
       state.dropDownActiveSubItem = null;
-    },
-    setWholeState(state, action) {
-      Object.keys(state).forEach((key) => {
-        console.log({ key, "a.p.k": action.payload[key] });
-        state[key] = action.payload[key];
-      });
     },
   },
 });

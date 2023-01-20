@@ -11,14 +11,17 @@ export const SideBar = () => {
   const dispatch = useDispatch();
   const { setIsSideBarOpen, setDropDownActiveItem, setDropDownActiveSubItem } =
     sideBarSlice.actions;
-  const {isSideBarOpen} = useSelector((state) => state.sideBarReducer);
-  console.log({isSideBarOpen})
+  const { isSideBarOpen } = useSelector((state) => state.sideBarReducer);
   const toggleOpen = () => dispatch(setIsSideBarOpen(!isSideBarOpen));
 
   if (!isSideBarOpen)
     return (
-      <div className={styles.toggleIconWrapper}>
-        <ArrowRight onClick={toggleOpen} />
+      <div className={styles.sideBarWrapper}>
+        <div className={styles.sideBarContainer}>
+          <div className={styles.toggleIconWrapper}>
+            <ArrowRight onClick={toggleOpen} />
+          </div>
+        </div>
       </div>
     );
 
@@ -42,30 +45,6 @@ export const SideBar = () => {
             }}
           />
         ))}
-        {/*<Dropdown*/}
-        {/*  header={"sandwiches"}*/}
-        {/*  subItems={[]}*/}
-        {/*  onSelectSubItem={(subItem) => {*/}
-        {/*    dispatch(setDropDownActiveItem("sandwiches"));*/}
-        {/*    dispatch(setDropDownActiveSubItem(subItem));*/}
-        {/*  }}*/}
-        {/*/>*/}
-        {/*<Dropdown*/}
-        {/*  header={"burgers"}*/}
-        {/*  subItems={["classic", "cheeseBurger", "bigMac", "bigTasty"]}*/}
-        {/*  onSelectSubItem={(subItem) => {*/}
-        {/*    dispatch(setDropDownActiveItem("burgers"));*/}
-        {/*    dispatch(setDropDownActiveSubItem(subItem));*/}
-        {/*  }}*/}
-        {/*/>*/}
-        {/*<Dropdown*/}
-        {/*  header={"baget"}*/}
-        {/*  subItems={["withHam", "withPastra", "garlic", "withPepperGrill"]}*/}
-        {/*  onSelectSubItem={(subItem) => {*/}
-        {/*    dispatch(setDropDownActiveItem("baget"));*/}
-        {/*    dispatch(setDropDownActiveSubItem(subItem));*/}
-        {/*  }}*/}
-        {/*/>*/}
       </div>
     </div>
   );
