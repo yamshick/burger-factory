@@ -6,7 +6,7 @@ import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./add-ingredient-modal.module.scss";
 import { Select } from "../select";
-import { blockItemsTypes } from "../../../constants";
+import { blockItemsTypes } from "../../../app-constants";
 
 export const AddIngredientModal = () => {
   const { setIsAddIngredientsModalOpen, resetAddIngredientModalData } =

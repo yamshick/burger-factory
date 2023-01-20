@@ -4,16 +4,21 @@ import { setupStore } from "./store/store";
 import { Provider } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { LOCAL_STORAGE_STATE_KEY } from "./app-constants";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 const store = setupStore();
 
+const localStorageState = JSON.parse(
+  localStorage.getItem(LOCAL_STORAGE_STATE_KEY)
+);
+
 root.render(
   <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
-      <App />
+      <App localStorageState={localStorageState} />
     </DndProvider>
   </Provider>
 );

@@ -1,3 +1,5 @@
+export const LOCAL_STORAGE_STATE_KEY = 'BURGER_FACTORY_STATE'
+
 export const blockItemsTypes = {
   INGREDIENT: "INGREDIENT",
   GROUP: "GROUP",
@@ -52,5 +54,20 @@ export const snacksCategories = [
         name: "withPepperGrill",
       },
     ],
+  },
+];
+
+export const headerNavItems = [
+  {
+    id: 1,
+    name: "Рецепт",
+  },
+  {
+    id: 2,
+    name: "Время приготовления",
+  },
+  {
+    id: 3,
+    name: "Подача",
   },
 ];

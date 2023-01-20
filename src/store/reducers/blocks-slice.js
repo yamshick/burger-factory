@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   // whole app starting uniqueId
   // before localStorage init
-  uniqueId: 12,
+  uniqueId: 0,
   receiptBlocks: [],
   selectedGroupIds: {},
   selectedIngredientIds: [],

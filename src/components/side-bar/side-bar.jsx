@@ -2,26 +2,26 @@ import styles from "./side-bar.module.scss";
 import Logo from "../../assets/icons/logo.svg";
 import ArrowRight from "../../assets/icons/arrow-right.svg";
 import ArrowLeft from "../../assets/icons/arrow-left.svg";
-import { useState } from "react";
 import { Dropdown } from "./dropdown/dropdown";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sideBarSlice } from "../../store/reducers/side-bar-slice";
-import { snacksCategories } from "../../constants";
+import { snacksCategories } from "../../app-constants";
 
 export const SideBar = () => {
   const dispatch = useDispatch();
-  const { setDropDownActiveItem, setDropDownActiveSubItem } =
+  const { setIsSideBarOpen, setDropDownActiveItem, setDropDownActiveSubItem } =
     sideBarSlice.actions;
-  const [isOpen, setIsOpen] = useState(true);
+  const {isSideBarOpen} = useSelector((state) => state.sideBarReducer);
+  console.log({isSideBarOpen})
+  const toggleOpen = () => dispatch(setIsSideBarOpen(!isSideBarOpen));
 
-  const toggleOpen = () => setIsOpen(!isOpen);
-
-  if (!isOpen)
+  if (!isSideBarOpen)
     return (
       <div className={styles.toggleIconWrapper}>
         <ArrowRight onClick={toggleOpen} />
       </div>
     );
+
   return (
     <div className={styles.sideBarWrapper}>
       <div className={styles.sideBarContainer}>

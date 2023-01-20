@@ -1,26 +1,8 @@
 import styles from "./header.module.scss";
-import { useState } from "react";
-import { Receipt } from "./receipt";
-import { CookingTime } from "./cooking-time";
-import { Serving } from "./serving";
+import {headerNavSlice} from "store/reducers/header-nav-slice";
+import {useSelector} from "react-redux";
+import {headerNavItems} from "../../../../app-constants";
 
-const navItems = [
-  {
-    id: 1,
-    name: "Рецепт",
-    component: Receipt,
-  },
-  {
-    id: 2,
-    name: "Время приготовления",
-    component: CookingTime,
-  },
-  {
-    id: 3,
-    name: "Подача",
-    component: Serving,
-  },
-];
 const NavItem = ({ item, onItemClick, active }) => {
   const onClick = () => onItemClick(item);
   return (
@@ -37,16 +19,17 @@ const NavItem = ({ item, onItemClick, active }) => {
   );
 };
 export const Header = () => {
-  const [activeItemId, setActiveItemId] = useState(1);
-  const onItemClick = (item) => setActiveItemId(item.id);
+  const {activeHeaderNavItem} = useSelector(state => state.headerNavReducer)
+  const {setActiveHeaderNavItem} = headerNavSlice.actions;
+  const onItemClick = (item) => setActiveHeaderNavItem(item.id);
 
   return (
     <div className={styles.headerContainer}>
-      {navItems.map((item, idx) => (
+      {headerNavItems.map(item => (
         <NavItem
           key={item.id}
           item={item}
-          active={item.id === activeItemId}
+          active={item.id === activeHeaderNavItem?.id}
           onItemClick={onItemClick}
         />
       ))}

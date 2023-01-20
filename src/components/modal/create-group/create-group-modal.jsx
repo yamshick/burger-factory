@@ -5,7 +5,7 @@ import { blocksSlice } from "store/reducers/blocks-slice";
 import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./create-group-modal.modules.scss";
-import { blockItemsTypes } from "../../../constants";
+import { blockItemsTypes } from "../../../app-constants";
 
 export const CreateGroupModal = () => {
   const { setIsNewGroupModalOpen, resetAddGroupModalData } = modalSlice.actions;

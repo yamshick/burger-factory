@@ -9,12 +9,14 @@ import { blocksSlice } from "./store/reducers/blocks-slice";
 import { useEffect } from "react";
 import { CreateGroupModal } from "./components/modal/create-group/create-group-modal";
 import { AddIngredientModal } from "./components/modal/add-ingredient/add-ingredient-modal";
+import { headerNavSlice } from "./store/reducers/header-nav-slice";
 
-export const App = () => {
+export const App = ({ localStorageState }) => {
   const dispatch = useDispatch();
   const { setWholeState: setWholeStateSideBarSlice } = sideBarSlice.actions;
   const { setWholeState: setWholeStateModalSlice } = modalSlice.actions;
   const { setWholeState: setWholeStateBlockSlice } = blocksSlice.actions;
+  const { setWholeState: setWholeStataNavHeaderSlice } = headerNavSlice.actions;
 
   const {
     isNewBlockModalOpen,
@@ -22,12 +24,12 @@ export const App = () => {
     isAddIngredientsModalOpen,
   } = useSelector((state) => state.modalReducer);
 
-  const state = JSON.parse(localStorage.getItem("state"));
   useEffect(() => {
-    if (state) {
-      dispatch(setWholeStateBlockSlice(state.blocksReducer));
-      dispatch(setWholeStateModalSlice(state.modalReducer));
-      dispatch(setWholeStateSideBarSlice(state.sideBarReducer));
+    if (localStorageState) {
+      dispatch(setWholeStateBlockSlice(localStorageState.blocksReducer));
+      dispatch(setWholeStateModalSlice(localStorageState.modalReducer));
+      dispatch(setWholeStateSideBarSlice(localStorageState.sideBarReducer));
+      dispatch(setWholeStataNavHeaderSlice(localStorageState.headerNavReducer));
     }
   }, []);
 

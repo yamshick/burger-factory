@@ -6,8 +6,10 @@ import { ReceiptBlock } from "./receipt-block/receipt-block";
 import { InfoPanel } from "./info-panel/info-panel";
 export const Index = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
-  const {dropDownActiveSubItem} = useSelector(state => state.sideBarReducer)
-    const snackId = dropDownActiveSubItem?.id;
+  const { dropDownActiveSubItem } = useSelector(
+    (state) => state.sideBarReducer
+  );
+  const snackId = dropDownActiveSubItem?.id;
 
   const { setIsNewBlockModalOpen } = modalSlice.actions;
   const dispatch = useDispatch();
@@ -18,9 +20,11 @@ export const Index = () => {
     <>
       <Header />
       <div>
-        {receiptBlocks?.filter(({snackId: id}) => snackId === id)?.map(({ name, id, groups }) => (
-          <ReceiptBlock key={id} id={id} name={name} groups={groups} />
-        ))}
+        {receiptBlocks
+          ?.filter(({ snackId: id }) => snackId === id)
+          ?.map(({ name, id, groups }) => (
+            <ReceiptBlock key={id} id={id} name={name} groups={groups} />
+          ))}
       </div>
       <div>
         <NewBlockButton onClick={onNewBlockButtonClick} />
