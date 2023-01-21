@@ -3,6 +3,8 @@ import { IngredientsGroup } from "./receipt-block-group/group";
 import { useCallback, useEffect, useState } from "react";
 import { blocksSlice } from "../../../../store/reducers/blocks-slice";
 import { useDispatch } from "react-redux";
+import styles from "./receipt-block-table.module.scss";
+import CloseCross from "assets/icons/close-cross.svg";
 
 export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   const [cards, setCards] = useState(groups);
@@ -37,17 +39,29 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
     }
   };
   return (
-    <div style={{ marginTop: "5px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <input type={"checkbox"} onChange={onCheck} checked={isChecked} />
-        <div> Название </div>
-        <div> Вес </div>
-        <div> Ккал </div>
-        <div> Примечания </div>
+    <div className={styles.mainContainer}>
+      <div className={[styles.row, styles.headerRow].join(" ")}>
+        <div className={styles.checkboxWrapper}>
+          <input
+            className={styles.checkbox}
+            type={"checkbox"}
+            onChange={onCheck}
+            checked={isChecked}
+          />
+        </div>
+        <div className={styles.name}> Название </div>
+        <div className={styles.weight}> Вес </div>
+        <div className={styles.calories}> Ккал </div>
+        <div className={styles.notes}> Примечания </div>
+        <div className={styles.removeIconHeader}>
+          {" "}
+          <CloseCross />{" "}
+        </div>
       </div>
       {cards.map(
-        ({ id, name, weight, calories, notes, ingredients }, index) => (
+        ({ id, name, weight, calories, notes, ingredients, type }, index) => (
           <IngredientsGroup
+            type={type}
             key={id}
             id={id}
             receiptBlockId={receiptBlockId}

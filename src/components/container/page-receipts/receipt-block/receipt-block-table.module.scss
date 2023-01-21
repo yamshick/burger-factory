@@ -1,0 +1,73 @@
+.mainContainer {
+  margin-top: 10px;
+  border: solid 1px;
+}
+
+.headerRow {
+  background-color: #F6F8F9;
+}
+
+.row {
+  display: flex;
+  //justify-content: space-between;
+}
+
+.cell {
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+}
+
+.checkboxWrapper {
+  flex-grow: 1;
+  border: solid 1px;
+  box-sizing: border-box;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.name {
+  flex-grow: 10;
+  box-sizing: border-box;
+  border: solid 1px;
+}
+
+.groupName {
+  font-weight: bold;
+}
+
+.weight {
+  flex-grow: 2;
+  border: solid 1px;
+  box-sizing: border-box;
+}
+
+.calories {
+  flex-grow: 2;
+  border: solid 1px;
+  box-sizing: border-box;
+}
+
+.notes {
+  flex-grow: 4;
+  border: solid 1px;
+  box-sizing: border-box;
+}
+
+.removeIcon {
+  flex-grow: 1;
+  border: solid 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.removeIconHeader {
+  flex-grow: 1;
+  //visibility: hidden;
+  border: solid 1px;
+  box-sizing: border-box;
+}

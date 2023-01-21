@@ -1,17 +1,20 @@
 import { useDrag, useDrop } from "react-dnd";
 import { useRef, useState } from "react";
 import styles from "./group.module.scss";
+import tableStyles from "../receipt-block-table.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Ingredients } from "../ingredients/ingredients";
 import CloseCross from "assets/icons/close-cross.svg";
+import Dotes from "assets/icons/dotes.svg";
 
 const ItemTypes = {
   CARD: "card",
 };
 
 export const IngredientsGroup = ({
+  type,
   id,
   receiptBlockId,
   index,
@@ -103,34 +106,65 @@ export const IngredientsGroup = ({
       className={
         isDragging
           ? [styles.group, styles.groupIsDragging].join(" ")
-          : styles.group
+          : [styles.group].join(" ")
       }
       data-handler-id={handlerId}
     >
-      <input
-        className={styles.checkbox}
-        type={"checkbox"}
-        onChange={onCheck}
-        checked={isChecked}
-        disabled={isDisabled}
-      />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <EditableElement
-          onChange={onEditableElementChange}
-          onBlur={onEditableElementBlur}
+      <div className={tableStyles.row}>
+        <div className={tableStyles.cell}>
+          <Dotes />
+        </div>
+        <div
+          className={[tableStyles.cell, tableStyles.checkboxWrapper].join(" ")}
         >
-          <div className={styles.editableElement}>{name}</div>
-        </EditableElement>
-        <div>{weight}</div>
-        <div>{calories}</div>
-        <div>{notes}</div>
-        <CloseCross onClick={onGroupRemoveClick} />
+          <input
+            className={tableStyles.checkbox}
+            type={"checkbox"}
+            onChange={onCheck}
+            checked={isChecked}
+            disabled={isDisabled}
+          />
+        </div>
+        <div className={tableStyles.name}>
+          <EditableElement
+            onChange={onEditableElementChange}
+            onBlur={onEditableElementBlur}
+          >
+            <div
+              className={
+                type === "GROUP"
+                  ? [
+                      tableStyles.groupName,
+                      tableStyles.cell,
+                      styles.editableElement,
+                    ].join(" ")
+                  : [tableStyles.cell, styles.editableElement].join(" ")
+              }
+            >
+              {name}
+            </div>
+          </EditableElement>
+        </div>
+        <div className={[tableStyles.cell, tableStyles.weight].join(" ")}>
+          {weight}
+        </div>
+        <div className={[tableStyles.cell, tableStyles.calories].join(" ")}>
+          {calories}
+        </div>
+        <div className={[tableStyles.cell, tableStyles.notes].join(" ")}>
+          {notes}
+        </div>
+        <div className={[tableStyles.cell, tableStyles.removeIcon].join(" ")}>
+          <CloseCross onClick={onGroupRemoveClick} />
+        </div>
       </div>
-      <Ingredients
-        ingredients={ingredients}
-        blockId={receiptBlockId}
-        groupId={id}
-      />
+      <div>
+        <Ingredients
+          ingredients={ingredients}
+          blockId={receiptBlockId}
+          groupId={id}
+        />
+      </div>
     </div>
   );
 };
