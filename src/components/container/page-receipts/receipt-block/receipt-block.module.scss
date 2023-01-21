@@ -3,11 +3,28 @@
 }
 
 .receiptBlockActionButton {
+  background-color: white;
   color: #F16662;
   border: 1px solid #F16662;
   border-radius: 6px;
+  margin-right: 10px;
 }
 
 .receiptBlock {
   margin-top: 20px;
+}
+
+.buttonsContainer {
+  margin-top: 15px;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeCross {
+  margin-left: 6px;
+  cursor: pointer;
 }

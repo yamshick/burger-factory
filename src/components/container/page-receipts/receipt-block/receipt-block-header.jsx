@@ -13,7 +13,7 @@ export const ReceiptBlockHeader = ({ id, name }) => {
   return (
     <div className={styles.receiptBlockHeader}>
       {name}
-      <CloseCross onClick={onClick} />
+      <CloseCross className={styles.closeCross} onClick={onClick} />
     </div>
   );
 };

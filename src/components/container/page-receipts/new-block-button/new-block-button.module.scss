@@ -1,10 +1,12 @@
 .newBlockButton {
+  margin-top: 26px;
   height: 32px;
   width: 140px;
-  left: 284px;
-  top: 938px;
   border-radius: 6px;
   padding: 4px 12px 4px 8px;
   background-color: #F16662;
   color: white;
+  display: flex;
+  align-items: center;
+  outline: none;
 }

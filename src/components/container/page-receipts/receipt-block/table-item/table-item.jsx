@@ -70,19 +70,58 @@ export const TableItem = ({
   drag(drop(ref));
 
   const [curName, setCurName] = useState(name);
-  const { updateGroupName, removeGroup } = blocksSlice.actions;
+  const [curWeight, setCurWeight] = useState(weight);
+  const [curCalories, setCurCalories] = useState(calories);
+  const [curNotes, setCurNotes] = useState(notes);
+
+  const { removeGroup, updateGroup } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onGroupNameChange = (value) => {
     setCurName(value);
   };
-
   const onNameBlur = () => {
     if (curName && curName !== name) {
       dispatch(
-        updateGroupName({
+        updateGroup({
           blockId: receiptBlockId,
           groupId: id,
-          groupName: curName,
+          data: { name: curName },
+        })
+      );
+    }
+  };
+
+  const onWeightBlur = () => {
+    if (curWeight && curWeight !== weight) {
+      dispatch(
+        updateGroup({
+          blockId: receiptBlockId,
+          groupId: id,
+          data: { weight: curWeight },
+        })
+      );
+    }
+  };
+
+  const onCaloriesBlur = () => {
+    if (curCalories && curCalories !== calories) {
+      dispatch(
+        updateGroup({
+          blockId: receiptBlockId,
+          groupId: id,
+          data: { calories: curCalories },
+        })
+      );
+    }
+  };
+
+  const onNotesBlur = () => {
+    if (curNotes && curNotes !== notes) {
+      dispatch(
+        updateGroup({
+          blockId: receiptBlockId,
+          groupId: id,
+          data: { notes: curNotes },
         })
       );
     }
@@ -153,6 +192,8 @@ export const TableItem = ({
           </EditableElement>
         </div>
         <EditableElement
+          onChange={setCurWeight}
+          onBlur={onWeightBlur}
           className={[
             tableStyles.cell,
             tableStyles.weight,
@@ -162,6 +203,8 @@ export const TableItem = ({
           <div>{weight}</div>
         </EditableElement>
         <EditableElement
+          onChange={setCurCalories}
+          onBlur={onCaloriesBlur}
           className={[
             tableStyles.cell,
             tableStyles.calories,
@@ -171,6 +214,8 @@ export const TableItem = ({
           <div>{calories}</div>
         </EditableElement>
         <EditableElement
+          onChange={setCurNotes}
+          onBlur={onNotesBlur}
           className={[
             tableStyles.cell,
             tableStyles.notes,

@@ -23,20 +23,24 @@ export const ReceiptBlockActions = ({ id }) => {
   };
 
   return (
-    <div>
+    <div className={styles.buttonsContainer}>
       <button
         onClick={onAddIngredientClick}
         className={styles.receiptBlockActionButton}
       >
-        <RedPlus />
-        Ингредиент
+        <div className={styles.buttonContent}>
+          <RedPlus />
+          <span>Ингредиент</span>
+        </div>
       </button>
       <button
         onClick={onAddGroupClick}
         className={styles.receiptBlockActionButton}
       >
-        <RedPlus />
-        Группа
+        <div className={styles.buttonContent}>
+          <RedPlus />
+          <span>Группа</span>
+        </div>
       </button>
     </div>
   );

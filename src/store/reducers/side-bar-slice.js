@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE_STATE } from "../../app-constants";
+import { LOCAL_STORAGE_STATE, snacksCategories } from "../../app-constants";
 
 const initialState = {
   isSideBarOpen: true,
   dropDownOpenItems: [],
-  dropDownActiveItem: null,
-  dropDownActiveSubItem: null,
+  dropDownActiveItem: snacksCategories[1],
+  dropDownActiveSubItem: snacksCategories[1].snacks[0],
 };
 
 export const sideBarSlice = createSlice({

@@ -63,9 +63,8 @@ export const blocksSlice = createSlice({
       block.groups = groups;
     },
 
-    // TODO: weight cal notes
-    updateGroupName(state, action) {
-      const { blockId, groupId, groupName } = action.payload;
+    updateGroup(state, action) {
+      const { blockId, groupId, data } = action.payload;
       const block = state.receiptBlocks.find(
         (receipt) => receipt.id === blockId
       );
@@ -76,7 +75,10 @@ export const blocksSlice = createSlice({
       const group = state.receiptBlocks[blockIndex].groups.find(
         (group) => group.id === groupId
       );
-      group.name = groupName;
+
+      for (let key in data) {
+        group[key] = data[key];
+      }
     },
 
     selectGroup(state, action) {
