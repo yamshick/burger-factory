@@ -1,8 +1,8 @@
 import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 import { blocksSlice } from "store/reducers/blocks-slice";
-import Dots from 'assets/icons/dots.svg'
-import styles from '../receipt-block-table.module.scss'
+import Dots from "assets/icons/dots.svg";
+import styles from "../receipt-block-table.module.scss";
 
 export const Ingredients = ({
   isParentGroupChecked,
@@ -16,15 +16,16 @@ export const Ingredients = ({
   return (
     <>
       {ingredients?.map(({ id, name, weight, calories, notes }) => (
-        <div
-          key={id}
-          className={styles.row}
-        >
+        <div key={id} className={styles.row}>
           <div className={styles.cell}>
-            <Dots/>
+            <Dots />
           </div>
           <div className={[styles.cell, styles.checkboxWrapper].join(" ")}>
-            <input className={styles.checkbox} type={"checkbox"} checked={isParentGroupChecked} />
+            <input
+              className={styles.checkbox}
+              type={"checkbox"}
+              checked={isParentGroupChecked}
+            />
           </div>
           <div className={[styles.cell, styles.name].join(" ")}>
             <div>{name}</div>
@@ -38,7 +39,12 @@ export const Ingredients = ({
           <div className={[styles.cell, styles.notes].join(" ")}>
             <div>{notes}</div>
           </div>
-          <div className={[styles.cell, styles.removeIcon].join(" ")} onClick={() => dispatch(removeIngredient({ blockId, groupId, ingredientId: id }))}>
+          <div
+            className={[styles.cell, styles.removeIcon].join(" ")}
+            onClick={() =>
+              dispatch(removeIngredient({ blockId, groupId, ingredientId: id }))
+            }
+          >
             <CloseCross />
           </div>
         </div>

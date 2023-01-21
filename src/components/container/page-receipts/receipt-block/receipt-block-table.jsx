@@ -18,6 +18,9 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
     setGroupsToStore(currentGroups);
   }, [currentGroups]);
 
+  useEffect(() => {
+    setCurrentGroups(groups);
+  }, [groups]);
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setCurrentGroups((prevCards) =>
       update(prevCards, {
@@ -42,6 +45,7 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
       dispatch(resetGroupSelection());
     }
   };
+
   return (
     <div className={styles.mainContainer}>
       <div className={[styles.row, styles.headerRow].join(" ")}>

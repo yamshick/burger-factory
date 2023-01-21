@@ -163,7 +163,7 @@ export const TableItem = ({
         {type === blockItemsTypes.GROUP && (
           <Ingredients
             isParentGroupChecked={isChecked}
-            ingredients={console.log({ingredients}) || ingredients}
+            ingredients={console.log({ ingredients }) || ingredients}
             blockId={receiptBlockId}
             groupId={id}
           />
