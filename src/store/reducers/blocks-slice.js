@@ -6,6 +6,7 @@ const initialState = {
   // before localStorage init
   uniqueId: 0,
   receiptBlocks: [],
+  // selectedBlockId: null,
   selectedGroupIds: {},
   selectedIngredientIds: [],
 };
@@ -112,7 +113,14 @@ export const blocksSlice = createSlice({
       block.groups.forEach(({ id }) =>
         state.selectedGroupIds[blockId].push(id)
       );
+      // state.selectedBlockId = null
     },
+
+    // unSelectAllGroups(state) {
+    //   state.selectedGroupIds = {};
+    //   state.selectedBlockId = null;
+    //   state.selectedIngredientIds = [];
+    // },
 
     resetGroupSelection(state) {
       const blockId = Object.keys(state.selectedGroupIds)[0];

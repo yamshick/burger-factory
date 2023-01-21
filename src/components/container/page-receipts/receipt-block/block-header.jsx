@@ -1,9 +1,9 @@
 import { blocksSlice } from "store/reducers/blocks-slice";
 import { useDispatch } from "react-redux";
-import styles from "./receipt-block.module.scss";
+import styles from "./block.module.scss";
 import CloseCross from "assets/icons/close-cross.svg";
 
-export const ReceiptBlockHeader = ({ id, name }) => {
+export const BlockHeader = ({ id, name }) => {
   const { removeBlock } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onClick = () => {

@@ -2,11 +2,11 @@ import update from "immutability-helper";
 import { TableItem } from "./table-item/table-item";
 import { useCallback, useEffect, useState } from "react";
 import { blocksSlice } from "../../../../store/reducers/blocks-slice";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./receipt-block-table.module.scss";
-import CloseCross from "assets/icons/close-cross.svg";
+import { useDispatch } from "react-redux";
+import styles from "./block-table.module.scss";
+import { TableHeader } from "./table-header/table-header";
 
-export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
+export const BlockTable = ({ receiptBlockId, groups }) => {
   const { setGroups } = blocksSlice.actions;
   const dispatch = useDispatch();
 
@@ -32,39 +32,9 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
     );
   }, []);
 
-  const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
-
-  const [isChecked, setIsChecked] = useState(false);
-  const onCheck = (event) => {
-    const { checked } = event.target;
-    if (checked) {
-      setIsChecked(true);
-      dispatch(selectAllGroups({ blockId: receiptBlockId }));
-    } else {
-      setIsChecked(false);
-      dispatch(resetGroupSelection());
-    }
-  };
-
   return (
     <div className={styles.mainContainer}>
-      <div className={[styles.row, styles.headerRow].join(" ")}>
-        <div className={styles.checkboxWrapper}>
-          <input
-            className={styles.checkbox}
-            type={"checkbox"}
-            onChange={onCheck}
-            checked={isChecked}
-          />
-        </div>
-        <div className={styles.name}> Название </div>
-        <div className={styles.weight}> Вес </div>
-        <div className={styles.calories}> Ккал </div>
-        <div className={styles.notes}> Примечания </div>
-        <div className={styles.removeIconHeader}>
-          <CloseCross />
-        </div>
-      </div>
+      <TableHeader blockId={receiptBlockId} />
       {currentGroups.map(
         ({ id, name, weight, calories, notes, ingredients, type }, index) => (
           <TableItem

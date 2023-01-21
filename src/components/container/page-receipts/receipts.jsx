@@ -2,7 +2,7 @@ import { Header } from "./nav-header/header";
 import { NewBlockButton } from "./new-block-button/new-block-button";
 import { modalSlice } from "../../../store/reducers/modal-slice";
 import { useDispatch, useSelector } from "react-redux";
-import { ReceiptBlock } from "./receipt-block/receipt-block";
+import { Block } from "./receipt-block/block";
 import { InfoPanel } from "./info-panel/info-panel";
 export const Receipts = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
@@ -28,7 +28,7 @@ export const Receipts = () => {
             {receiptBlocks
               ?.filter(({ snackId: id }) => snackId === id)
               ?.map(({ name, id, groups }) => (
-                <ReceiptBlock key={id} id={id} name={name} groups={groups} />
+                <Block key={id} id={id} name={name} groups={groups} />
               ))}
           </div>
           <div>

@@ -1,7 +1,7 @@
 import { useDrag, useDrop } from "react-dnd";
 import { useRef, useState } from "react";
 import styles from "./table-item.module.scss";
-import tableStyles from "../receipt-block-table.module.scss";
+import tableStyles from "../block-table.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";

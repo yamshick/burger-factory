@@ -1,9 +1,9 @@
-import styles from "./receipt-block.module.scss";
+import styles from "./block.module.scss";
 import RedPlus from "assets/icons/red-plus.svg";
 import { useDispatch } from "react-redux";
 import { modalSlice } from "store/reducers/modal-slice";
 
-export const ReceiptBlockActions = ({ id }) => {
+export const BlockActions = ({ id }) => {
   const dispatch = useDispatch();
   const {
     setIsNewGroupModalOpen,

@@ -2,7 +2,7 @@ import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 import { blocksSlice } from "store/reducers/blocks-slice";
 import Dots from "assets/icons/dots.svg";
-import styles from "../receipt-block-table.module.scss";
+import styles from "../block-table.module.scss";
 
 export const Ingredients = ({
   isParentGroupChecked,
