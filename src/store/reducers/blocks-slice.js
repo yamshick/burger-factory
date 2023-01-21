@@ -157,7 +157,7 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const newIngredient = { id: state.uniqueId++, ...ingredient };
+      const newIngredient = { id: state.uniqueId++, ingredientGroupId: Number(groupId), ...ingredient };
 
       const group = block.groups.find(({ id }) => id === Number(groupId));
       if (!group) {

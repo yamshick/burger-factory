@@ -1,7 +1,7 @@
 import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
-export const Ingredients = ({ blockId, groupId, ingredients }) => {
+export const Ingredients = ({ isParentGroupChecked, blockId, groupId, ingredients }) => {
   const { removeIngredient } = blocksSlice.actions;
   const dispatch = useDispatch();
   return (
@@ -15,7 +15,7 @@ export const Ingredients = ({ blockId, groupId, ingredients }) => {
             marginLeft: "20px",
           }}
         >
-          <input type={"checkbox"} />
+          <input type={"checkbox"} checked={isParentGroupChecked}/>
           <div>{name}</div>
           <div>{weight}</div>
           <div>{calories}</div>

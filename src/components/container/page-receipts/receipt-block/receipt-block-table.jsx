@@ -54,11 +54,10 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
         <div className={styles.calories}> Ккал </div>
         <div className={styles.notes}> Примечания </div>
         <div className={styles.removeIconHeader}>
-          {" "}
-          <CloseCross />{" "}
+          <CloseCross />
         </div>
       </div>
-      {cards.map(
+      {console.log({cards}) || cards.map(
         ({ id, name, weight, calories, notes, ingredients, type }, index) => (
           <IngredientsGroup
             type={type}

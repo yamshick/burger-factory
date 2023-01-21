@@ -86,7 +86,7 @@ export const IngredientsGroup = ({
   const { selectGroup, unSelectGroup } = blocksSlice.actions;
   const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
   const isChecked = selectedGroupIds[receiptBlockId]?.includes(id);
-  const isDisabled =
+  const isCheckboxDisabled =
     Object.keys(selectedGroupIds).length &&
     Number(Object.keys(selectedGroupIds)[0]) !== receiptBlockId;
   const onCheck = (event) => {
@@ -122,7 +122,7 @@ export const IngredientsGroup = ({
             type={"checkbox"}
             onChange={onCheck}
             checked={isChecked}
-            disabled={isDisabled}
+            disabled={isCheckboxDisabled}
           />
         </div>
         <div className={tableStyles.name}>
@@ -160,6 +160,7 @@ export const IngredientsGroup = ({
       </div>
       <div>
         <Ingredients
+            isParentGroupChecked={isChecked}
           ingredients={ingredients}
           blockId={receiptBlockId}
           groupId={id}
