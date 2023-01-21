@@ -1,20 +1,25 @@
 import update from "immutability-helper";
-import { IngredientsGroup } from "./receipt-block-group/group";
+import { TableItem } from "./table-item/table-item";
 import { useCallback, useEffect, useState } from "react";
 import { blocksSlice } from "../../../../store/reducers/blocks-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./receipt-block-table.module.scss";
 import CloseCross from "assets/icons/close-cross.svg";
 
 export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
-  const [cards, setCards] = useState(groups);
+  const { setGroups } = blocksSlice.actions;
+  const dispatch = useDispatch();
+
+  const [currentGroups, setCurrentGroups] = useState(groups);
+  const setGroupsToStore = () =>
+    dispatch(setGroups({ blockId: receiptBlockId, groups: currentGroups }));
 
   useEffect(() => {
-    setCards(groups);
-  }, [groups]);
+    setGroupsToStore(currentGroups);
+  }, [currentGroups]);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    setCards((prevCards) =>
+    setCurrentGroups((prevCards) =>
       update(prevCards, {
         $splice: [
           [dragIndex, 1],
@@ -25,7 +30,6 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
   }, []);
 
   const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
-  const dispatch = useDispatch();
 
   const [isChecked, setIsChecked] = useState(false);
   const onCheck = (event) => {
@@ -57,9 +61,9 @@ export const ReceiptBlockTable = ({ receiptBlockId, groups }) => {
           <CloseCross />
         </div>
       </div>
-      {console.log({cards}) || cards.map(
+      {currentGroups.map(
         ({ id, name, weight, calories, notes, ingredients, type }, index) => (
-          <IngredientsGroup
+          <TableItem
             type={type}
             key={id}
             id={id}

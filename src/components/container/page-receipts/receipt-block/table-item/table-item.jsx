@@ -1,6 +1,6 @@
 import { useDrag, useDrop } from "react-dnd";
 import { useRef, useState } from "react";
-import styles from "./group.module.scss";
+import styles from "./table-item.module.scss";
 import tableStyles from "../receipt-block-table.module.scss";
 import { EditableElement } from "../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
@@ -8,12 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Ingredients } from "../ingredients/ingredients";
 import CloseCross from "assets/icons/close-cross.svg";
 import Dotes from "assets/icons/dotes.svg";
+import { blockItemsTypes } from "../../../../../app-constants";
 
 const ItemTypes = {
   CARD: "card",
 };
 
-export const IngredientsGroup = ({
+export const TableItem = ({
   type,
   id,
   receiptBlockId,
@@ -132,7 +133,7 @@ export const IngredientsGroup = ({
           >
             <div
               className={
-                type === "GROUP"
+                type === blockItemsTypes.GROUP
                   ? [
                       tableStyles.groupName,
                       tableStyles.cell,
@@ -159,12 +160,14 @@ export const IngredientsGroup = ({
         </div>
       </div>
       <div>
-        <Ingredients
+        {type === blockItemsTypes.GROUP && (
+          <Ingredients
             isParentGroupChecked={isChecked}
-          ingredients={ingredients}
-          blockId={receiptBlockId}
-          groupId={id}
-        />
+            ingredients={ingredients}
+            blockId={receiptBlockId}
+            groupId={id}
+          />
+        )}
       </div>
     </div>
   );
