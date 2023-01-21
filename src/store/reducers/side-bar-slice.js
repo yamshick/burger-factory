@@ -17,7 +17,7 @@ export const sideBarSlice = createSlice({
     },
     toggleDropDownActiveItem(state, action) {
       const item = action.payload;
-      const itemIndex = state.dropDownOpenItems.findIndex(
+      const itemIndex = state.dropDownOpenItems?.findIndex(
         ({ id }) => id === item.id
       );
       if (itemIndex > -1) {

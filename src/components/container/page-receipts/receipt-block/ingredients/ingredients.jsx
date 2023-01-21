@@ -17,7 +17,7 @@ export const Ingredients = ({
     <>
       {ingredients?.map(({ id, name, weight, calories, notes }) => (
         <div key={id} className={styles.row}>
-          <div className={styles.cell}>
+          <div className={[styles.cell, styles.dots].join(" ")}>
             <Dots />
           </div>
           <div className={[styles.cell, styles.checkboxWrapper].join(" ")}>
@@ -27,12 +27,8 @@ export const Ingredients = ({
               checked={isParentGroupChecked}
             />
           </div>
-          <div
-            className={[styles.cell, styles.name, styles.ingredientName].join(
-              " "
-            )}
-          >
-            <div>{name}</div>
+          <div className={[styles.cell, styles.name].join(" ")}>
+            <div className={styles.ingredientName}>{name}</div>
           </div>
           <div className={[styles.cell, styles.weight].join(" ")}>
             <div>{weight}</div>
