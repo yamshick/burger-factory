@@ -27,7 +27,11 @@ export const Ingredients = ({
               checked={isParentGroupChecked}
             />
           </div>
-          <div className={[styles.cell, styles.name].join(" ")}>
+          <div
+            className={[styles.cell, styles.name, styles.ingredientName].join(
+              " "
+            )}
+          >
             <div>{name}</div>
           </div>
           <div className={[styles.cell, styles.weight].join(" ")}>

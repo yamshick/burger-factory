@@ -22,7 +22,8 @@ export const TableHeader = ({ blockId }) => {
 
   return (
     <div className={[styles.row, styles.headerRow].join(" ")}>
-      <div className={styles.checkboxWrapper}>
+      <div className={[styles.cell, styles.dots].join(" ")}> </div>
+      <div className={[styles.cell, styles.checkboxWrapper].join(" ")}>
         <input
           className={styles.checkbox}
           type={"checkbox"}
@@ -30,11 +31,11 @@ export const TableHeader = ({ blockId }) => {
           checked={isChecked}
         />
       </div>
-      <div className={styles.name}> Название </div>
-      <div className={styles.weight}> Вес </div>
-      <div className={styles.calories}> Ккал </div>
-      <div className={styles.notes}> Примечания </div>
-      <div className={styles.removeIconHeader}>
+      <div className={[styles.cell, styles.name].join(" ")}> Название </div>
+      <div className={[styles.cell, styles.weight].join(" ")}> Вес </div>
+      <div className={[styles.cell, styles.calories].join(" ")}> Ккал </div>
+      <div className={[styles.cell, styles.notes].join(" ")}> Примечания </div>
+      <div className={[styles.cell, styles.removeIcon].join(" ")}>
         <CloseCross />
       </div>
     </div>

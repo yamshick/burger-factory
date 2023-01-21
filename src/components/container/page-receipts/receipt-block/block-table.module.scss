@@ -1,6 +1,5 @@
 .mainContainer {
   margin-top: 10px;
-  border: solid 1px;
 }
 
 .headerRow {
@@ -9,19 +8,21 @@
 
 .row {
   display: flex;
-  //justify-content: space-between;
 }
 
 .cell {
   display: flex;
-  //justify-content: center;
   align-items: center;
-  border: solid 1px;
+  overflow: hidden;
+  height: 50px;
+}
+
+.dots {
+  flex: 1;
 }
 
 .checkboxWrapper {
-  flex-grow: 1;
-  border: solid 1px;
+  flex: 1;
   box-sizing: border-box;
 }
 
@@ -32,7 +33,7 @@
 }
 
 .name {
-  flex-grow: 10;
+  flex: 10;
   box-sizing: border-box;
 }
 
@@ -40,29 +41,33 @@
   font-weight: bold;
 }
 
+.ingredientName {
+  margin-left: 20px;
+}
+
 .weight {
-  flex-grow: 3;
+  flex: 3;
   box-sizing: border-box;
 }
 
 .calories {
-  flex-grow: 3;
+  flex: 3;
   box-sizing: border-box;
 }
 
 .notes {
-  flex-grow: 5;
+  flex: 5;
   box-sizing: border-box;
 }
 
 .removeIcon {
-  flex-grow: 1;
+  flex: 1;
   box-sizing: border-box;
   cursor: pointer;
 }
 
 .removeIconHeader {
-  flex-grow: 1;
+  flex: 1;
   border: solid 1px;
   box-sizing: border-box;
 }

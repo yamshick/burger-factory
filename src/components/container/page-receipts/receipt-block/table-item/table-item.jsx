@@ -155,7 +155,7 @@ export const TableItem = ({
       data-handler-id={handlerId}
     >
       <div className={tableStyles.row}>
-        <div className={[tableStyles.cell].join(" ")}>
+        <div className={[tableStyles.cell, tableStyles.dots].join(" ")}>
           <Dots />
         </div>
         <div
