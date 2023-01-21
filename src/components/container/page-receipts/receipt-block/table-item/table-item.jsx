@@ -69,17 +69,21 @@ export const TableItem = ({
   });
   drag(drop(ref));
 
-  const [groupName, setGroupName] = useState(name);
+  const [curName, setCurName] = useState(name);
   const { updateGroupName, removeGroup } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onGroupNameChange = (value) => {
-    setGroupName(value);
+    setCurName(value);
   };
 
-  const onEditableElementBlur = () => {
-    if (groupName && groupName !== name) {
+  const onNameBlur = () => {
+    if (curName && curName !== name) {
       dispatch(
-        updateGroupName({ blockId: receiptBlockId, groupId: id, groupName })
+        updateGroupName({
+          blockId: receiptBlockId,
+          groupId: id,
+          groupName: curName,
+        })
       );
     }
   };
@@ -129,33 +133,52 @@ export const TableItem = ({
         <div className={[tableStyles.cell, tableStyles.name].join(" ")}>
           <EditableElement
             onChange={onGroupNameChange}
-            onBlur={onEditableElementBlur}
-            className={tableStyles.editableContent}
+            onBlur={onNameBlur}
+            className={
+              type === blockItemsTypes.GROUP
+                ? [
+                    tableStyles.groupName,
+                    tableStyles.cell,
+                    styles.editableElement,
+                    tableStyles.editableContent,
+                  ].join(" ")
+                : [
+                    tableStyles.cell,
+                    styles.editableElement,
+                    tableStyles.editableContent,
+                  ].join(" ")
+            }
           >
-            <div
-              className={
-                type === blockItemsTypes.GROUP
-                  ? [
-                      tableStyles.groupName,
-                      tableStyles.cell,
-                      styles.editableElement,
-                    ].join(" ")
-                  : [tableStyles.cell, styles.editableElement].join(" ")
-              }
-            >
-              {name}
-            </div>
+            <div>{name}</div>
           </EditableElement>
         </div>
-        <div className={[tableStyles.cell, tableStyles.weight].join(" ")}>
-          {weight}
-        </div>
-        <div className={[tableStyles.cell, tableStyles.calories].join(" ")}>
-          {calories}
-        </div>
-        <div className={[tableStyles.cell, tableStyles.notes].join(" ")}>
-          {notes}
-        </div>
+        <EditableElement
+          className={[
+            tableStyles.cell,
+            tableStyles.weight,
+            tableStyles.editableContent,
+          ].join(" ")}
+        >
+          <div>{weight}</div>
+        </EditableElement>
+        <EditableElement
+          className={[
+            tableStyles.cell,
+            tableStyles.calories,
+            tableStyles.editableContent,
+          ].join(" ")}
+        >
+          <div>{calories}</div>
+        </EditableElement>
+        <EditableElement
+          className={[
+            tableStyles.cell,
+            tableStyles.notes,
+            tableStyles.editableContent,
+          ].join(" ")}
+        >
+          <div>{notes}</div>
+        </EditableElement>
         <div className={[tableStyles.cell, tableStyles.removeIcon].join(" ")}>
           <CloseCross onClick={onGroupRemoveClick} />
         </div>

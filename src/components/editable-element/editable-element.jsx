@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-export const EditableElement = ({ onChange, onBlur, className, children }) => {
+export const EditableElement = ({ onChange, onBlur, children, ...props }) => {
   const element = useRef();
   let elements = React.Children.toArray(children);
   if (elements.length > 1) {
@@ -31,7 +31,7 @@ export const EditableElement = ({ onChange, onBlur, className, children }) => {
     ref: element,
     onKeyUp: onMouseUp,
     onBlur: onBlurEvent,
-    className,
+    ...props,
   });
   return elements;
 };
