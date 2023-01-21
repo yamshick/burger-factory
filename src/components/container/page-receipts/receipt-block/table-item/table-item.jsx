@@ -7,7 +7,7 @@ import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Ingredients } from "../ingredients/ingredients";
 import CloseCross from "assets/icons/close-cross.svg";
-import Dotes from "assets/icons/dotes.svg";
+import Dots from "assets/icons/dots.svg";
 import { blockItemsTypes } from "../../../../../app-constants";
 
 const ItemTypes = {
@@ -112,8 +112,8 @@ export const TableItem = ({
       data-handler-id={handlerId}
     >
       <div className={tableStyles.row}>
-        <div className={tableStyles.cell}>
-          <Dotes />
+        <div className={[tableStyles.cell].join(" ")}>
+          <Dots />
         </div>
         <div
           className={[tableStyles.cell, tableStyles.checkboxWrapper].join(" ")}
@@ -126,7 +126,7 @@ export const TableItem = ({
             disabled={isCheckboxDisabled}
           />
         </div>
-        <div className={tableStyles.name}>
+        <div className={[tableStyles.cell, tableStyles.name].join(" ")}>
           <EditableElement
             onChange={onEditableElementChange}
             onBlur={onEditableElementBlur}
@@ -163,7 +163,7 @@ export const TableItem = ({
         {type === blockItemsTypes.GROUP && (
           <Ingredients
             isParentGroupChecked={isChecked}
-            ingredients={ingredients}
+            ingredients={console.log({ingredients}) || ingredients}
             blockId={receiptBlockId}
             groupId={id}
           />

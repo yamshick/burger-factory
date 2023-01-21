@@ -16,6 +16,7 @@
   display: flex;
   //justify-content: center;
   align-items: center;
+  border: solid 1px;
 }
 
 .checkboxWrapper {
@@ -33,7 +34,6 @@
 .name {
   flex-grow: 10;
   box-sizing: border-box;
-  border: solid 1px;
 }
 
 .groupName {
@@ -42,25 +42,21 @@
 
 .weight {
   flex-grow: 2;
-  border: solid 1px;
   box-sizing: border-box;
 }
 
 .calories {
   flex-grow: 2;
-  border: solid 1px;
   box-sizing: border-box;
 }
 
 .notes {
   flex-grow: 4;
-  border: solid 1px;
   box-sizing: border-box;
 }
 
 .removeIcon {
   flex-grow: 1;
-  border: solid 1px;
   box-sizing: border-box;
   cursor: pointer;
 }
