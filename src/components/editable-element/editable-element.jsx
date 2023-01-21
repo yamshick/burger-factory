@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
-export const EditableElement = (props) => {
-  const { onChange, onBlur } = props;
+export const EditableElement = ({ onChange, onBlur, className, children }) => {
   const element = useRef();
-  let elements = React.Children.toArray(props.children);
+  let elements = React.Children.toArray(children);
   if (elements.length > 1) {
     throw Error("Can't have more than one child");
   }
@@ -32,6 +31,7 @@ export const EditableElement = (props) => {
     ref: element,
     onKeyUp: onMouseUp,
     onBlur: onBlurEvent,
+    className,
   });
   return elements;
 };

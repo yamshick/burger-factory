@@ -72,12 +72,12 @@ export const TableItem = ({
   const [groupName, setGroupName] = useState(name);
   const { updateGroupName, removeGroup } = blocksSlice.actions;
   const dispatch = useDispatch();
-  const onEditableElementChange = (value) => {
+  const onGroupNameChange = (value) => {
     setGroupName(value);
   };
 
   const onEditableElementBlur = () => {
-    if (groupName) {
+    if (groupName && groupName !== name) {
       dispatch(
         updateGroupName({ blockId: receiptBlockId, groupId: id, groupName })
       );
@@ -128,8 +128,9 @@ export const TableItem = ({
         </div>
         <div className={[tableStyles.cell, tableStyles.name].join(" ")}>
           <EditableElement
-            onChange={onEditableElementChange}
+            onChange={onGroupNameChange}
             onBlur={onEditableElementBlur}
+            className={tableStyles.editableContent}
           >
             <div
               className={

@@ -63,7 +63,13 @@
 
 .removeIconHeader {
   flex-grow: 1;
-  //visibility: hidden;
   border: solid 1px;
   box-sizing: border-box;
+}
+
+.editableContent {
+  cursor: text;
+}
+.editableContent:focus {
+  outline: 1px solid #779DFF;
 }

@@ -63,6 +63,7 @@ export const blocksSlice = createSlice({
       block.groups = groups;
     },
 
+    // TODO: weight cal notes
     updateGroupName(state, action) {
       const { blockId, groupId, groupName } = action.payload;
       const block = state.receiptBlocks.find(
