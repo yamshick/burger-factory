@@ -19,7 +19,7 @@ export const SideBar = () => {
       <div className={styles.sideBarWrapper}>
         <div className={styles.sideBarContainer}>
           <div className={styles.toggleIconWrapper}>
-            <ArrowRight onClick={toggleOpen} />
+            <ArrowRight className={styles.clickIcon} onClick={toggleOpen} />
           </div>
         </div>
       </div>
@@ -32,13 +32,14 @@ export const SideBar = () => {
         {/*eslint-ignore next-line*/}
         <div>Добро пожаловать в &quot;Фабрику бургеров&quot;</div>
         <div className={styles.toggleIconWrapper}>
-          <ArrowLeft onClick={toggleOpen} />
+          <ArrowLeft className={styles.clickIcon} onClick={toggleOpen} />
         </div>
-        {snacksCategories.map(({ id, name, snacks }) => (
+        {snacksCategories.map(({ id, name, translation, snacks }) => (
           <Dropdown
             key={id}
             id={id}
             name={name}
+            translation={translation}
             snacks={snacks}
             onSelectSubItem={(subItem) => {
               dispatch(setDropDownActiveItem({ id, name, snacks }));
