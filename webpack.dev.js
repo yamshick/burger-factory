@@ -6,7 +6,7 @@ module.exports = merge(common, {
   mode: "development",
   output: {
     filename: "[name].js",
-    publicPath: "/",
+    // publicPath: "/",
   },
   devServer: {
     port: 3000,
