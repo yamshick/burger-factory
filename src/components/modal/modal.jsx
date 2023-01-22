@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { modalSlice } from "store/reducers/modal-slice";
+import CloseCross from "assets/icons/close-cross.svg";
 import styles from "./modal.module.scss";
 export const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
@@ -8,7 +7,7 @@ export const Modal = ({ isOpen, onClose, children }) => {
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.closeCrossWrapper} onClick={onClose}>
-          x
+          <CloseCross />
         </div>
         {children}
       </div>

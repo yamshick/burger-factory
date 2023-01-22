@@ -7,7 +7,7 @@ import {
 import { useEffect } from "react";
 import { sideBarSlice } from "store/reducers/side-bar-slice";
 import ChevronRight from "assets/icons/chevron-right.svg";
-import styles from './bread-crumbs.module.scss'
+import styles from "./bread-crumbs.module.scss";
 
 const locationToBreadCrumbsMap = {
   "/": "Рецепты",
@@ -38,12 +38,24 @@ export const BreadCrumbs = () => {
         {first && !second && !third && `${first}`}
         {first && second && !third && (
           <>
-            <span>{first}</span> <span><ChevronRight /></span> <span>{second}</span>
+            <span>{first}</span>{" "}
+            <span>
+              <ChevronRight />
+            </span>{" "}
+            <span>{second}</span>
           </>
         )}
         {first && second && third && (
           <>
-            <span>{first}</span> <span><ChevronRight /></span> <span>{second}</span> <span><ChevronRight /></span> <span>{third}</span>
+            <span>{first}</span>{" "}
+            <span>
+              <ChevronRight />
+            </span>{" "}
+            <span>{second}</span>{" "}
+            <span>
+              <ChevronRight />
+            </span>{" "}
+            <span>{third}</span>
           </>
         )}
       </div>

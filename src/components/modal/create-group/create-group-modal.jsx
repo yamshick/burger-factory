@@ -6,6 +6,7 @@ import { Input } from "../input";
 import { useEffect, useState } from "react";
 import styles from "./create-group-modal.modules.scss";
 import { blockItemsTypes } from "../../../app-constants";
+import { Button } from "../button";
 
 export const CreateGroupModal = () => {
   const { setIsNewGroupModalOpen, resetAddGroupModalData } = modalSlice.actions;
@@ -51,38 +52,38 @@ export const CreateGroupModal = () => {
   return (
     <Modal isOpen={isNewGroupModalOpen} onClose={onClose}>
       <div className={styles.container}>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"text"}
             placeholder={"Название группы"}
             onChange={onGroupNameChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"number"}
             placeholder={"Вес"}
             onChange={onWeightChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"number"}
             placeholder={"Ккал"}
             onChange={onCaloriesChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"text"}
             placeholder={"Примечания"}
             onChange={onNotesChange}
           />
         </div>
-        <div className={styles.inputContainer}>
-          <button onClick={onAddGroupClick} disabled={isAddGroupButtonDisabled}>
-            Добавить группу
-          </button>
+        <div>
+          <Button onClick={onAddGroupClick} disabled={isAddGroupButtonDisabled}>
+            Добавить
+          </Button>
         </div>
       </div>
     </Modal>

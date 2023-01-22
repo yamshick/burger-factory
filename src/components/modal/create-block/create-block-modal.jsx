@@ -4,6 +4,7 @@ import { Modal } from "../modal";
 import { Input } from "../input";
 import { blocksSlice } from "../../../store/reducers/blocks-slice";
 import { useState } from "react";
+import { Button } from "../button";
 
 export const CreateBlockModal = () => {
   const { setIsNewBlockModalOpen } = modalSlice.actions;
@@ -26,7 +27,9 @@ export const CreateBlockModal = () => {
   return (
     <Modal isOpen={isNewBlockModalOpen} onClose={onClose}>
       <Input onChange={onChange} />
-      <button onClick={onClick}>Добавить блок</button>
+      <Button onClick={onClick} disabled={!blockName}>
+        Добавить
+      </Button>
     </Modal>
   );
 };

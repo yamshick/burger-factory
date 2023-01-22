@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import styles from "./add-ingredient-modal.module.scss";
 import { Select } from "../select";
 import { blockItemsTypes } from "../../../app-constants";
+import { Button } from "../button";
 
 export const AddIngredientModal = () => {
   const { setIsAddIngredientsModalOpen, resetAddIngredientModalData } =
@@ -78,41 +79,41 @@ export const AddIngredientModal = () => {
         />
       </div>
       <div className={styles.container}>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"text"}
             placeholder={"Название ингредиента"}
             onChange={onIngredientNameChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"number"}
             placeholder={"Вес"}
             onChange={onWeightChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"number"}
             placeholder={"Ккал"}
             onChange={onCaloriesChange}
           />
         </div>
-        <div className={styles.inputContainer}>
+        <div>
           <Input
             type={"text"}
             placeholder={"Примечания"}
             onChange={onNotesChange}
           />
         </div>
-        <div className={styles.inputContainer}>
-          <button
+        <div>
+          <Button
             onClick={onAddIngredientClick}
             disabled={isAddIngredientButtonDisabled}
           >
-            Добавить ингредиент
-          </button>
+            Добавить
+          </Button>
         </div>
       </div>
     </Modal>
