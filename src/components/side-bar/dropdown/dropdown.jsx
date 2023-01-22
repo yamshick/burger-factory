@@ -1,4 +1,4 @@
-import Chevron from "../../../assets/icons/chevron.svg";
+import Chevron from "../../../assets/icons/chevron-down.svg";
 import { useState } from "react";
 import { dropDownItemsMap, dropDownSubItemsMap } from "../constants";
 import { useDispatch, useSelector } from "react-redux";

@@ -5,7 +5,9 @@ import {
   dropDownSubItemsMap,
 } from "../../side-bar/constants";
 import { useEffect } from "react";
-import { sideBarSlice } from "../../../store/reducers/side-bar-slice";
+import { sideBarSlice } from "store/reducers/side-bar-slice";
+import ChevronRight from "assets/icons/chevron-right.svg";
+import styles from './bread-crumbs.module.scss'
 
 const locationToBreadCrumbsMap = {
   "/": "Рецепты",
@@ -30,12 +32,21 @@ export const BreadCrumbs = () => {
   let second = dropDownItemsMap[dropDownActiveItem?.name];
   let third = dropDownSubItemsMap[dropDownActiveSubItem?.name];
 
-  second = second ? ` / ${second}` : "";
-  third = third ? ` / ${third}` : "";
-
   return (
     <>
-      <div>{`${first}${second}${third}`}</div>
+      <div className={styles.breadCrumbs}>
+        {first && !second && !third && `${first}`}
+        {first && second && !third && (
+          <>
+            <span>{first}</span> <span><ChevronRight /></span> <span>{second}</span>
+          </>
+        )}
+        {first && second && third && (
+          <>
+            <span>{first}</span> <span><ChevronRight /></span> <span>{second}</span> <span><ChevronRight /></span> <span>{third}</span>
+          </>
+        )}
+      </div>
       {third && <h1>{dropDownSubItemsMap[dropDownActiveSubItem?.name]}</h1>}
     </>
   );
