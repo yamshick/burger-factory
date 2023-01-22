@@ -18,9 +18,9 @@ export const App = () => {
       <div className={styles.mainContainer}>
         <SideBar />
         <Content />
-      {isNewBlockModalOpen && <CreateBlockModal />}
-      {isNewGroupModalOpen && <CreateGroupModal />}
-      {isAddIngredientsModalOpen && <AddIngredientModal />}
+        {isNewBlockModalOpen && <CreateBlockModal />}
+        {isNewGroupModalOpen && <CreateGroupModal />}
+        {isAddIngredientsModalOpen && <AddIngredientModal />}
       </div>
     </div>
   );
