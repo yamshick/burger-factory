@@ -28,9 +28,13 @@ export const SideBar = () => {
   return (
     <div className={styles.sideBarWrapper}>
       <div className={styles.sideBarContainer}>
-        <Logo />
+        <div className={styles.logoContainer}>
+          <Logo />
+          <div>
+            Добро пожаловать в <br /> &quot;Фабрику бургеров&quot;{" "}
+          </div>
+        </div>
         {/*eslint-ignore next-line*/}
-        <div>Добро пожаловать в &quot;Фабрику бургеров&quot;</div>
         <div className={styles.toggleIconWrapper}>
           <ArrowLeft className={styles.clickIcon} onClick={toggleOpen} />
         </div>

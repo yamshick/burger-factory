@@ -18,10 +18,10 @@ export const App = () => {
       <div className={styles.mainContainer}>
         <SideBar />
         <Content />
-      </div>
       {isNewBlockModalOpen && <CreateBlockModal />}
       {isNewGroupModalOpen && <CreateGroupModal />}
       {isAddIngredientsModalOpen && <AddIngredientModal />}
+      </div>
     </div>
   );
 };
