@@ -5,7 +5,7 @@ import tableStyles from "../block-table.module.scss";
 import { EditableElement } from "../../../../../editable-element/editable-element";
 import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
-import { Ingredients } from "../ingredients/ingredients";
+import { TableSubItems } from "../table-sub-items/table-sub-items";
 import CloseCross from "assets/icons/close-cross.svg";
 import Dots from "assets/icons/dots.svg";
 import { blockItemsTypes } from "../../../../../../app-constants";
@@ -232,7 +232,7 @@ export const TableItem = ({
       </div>
       <div>
         {type === blockItemsTypes.GROUP && (
-          <Ingredients
+          <TableSubItems
             isParentGroupChecked={isChecked}
             ingredients={ingredients}
             blockId={receiptBlockId}

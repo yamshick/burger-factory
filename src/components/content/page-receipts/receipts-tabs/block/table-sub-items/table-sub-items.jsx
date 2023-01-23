@@ -4,7 +4,7 @@ import { blocksSlice } from "store/reducers/blocks-slice";
 import Dots from "assets/icons/dots.svg";
 import styles from "../block-table.module.scss";
 
-export const Ingredients = ({
+export const TableSubItems = ({
   isParentGroupChecked,
   blockId,
   groupId,
