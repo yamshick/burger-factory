@@ -32,19 +32,11 @@ export const AddIngredientModal = () => {
     }
   }, [isAddIngredientsModalOpen]);
 
-  const [groupId, setGroupId] = useState(undefined);
+  const [blockItemId, setBlockItemId] = useState(undefined);
   const [ingredientName, setIngredientName] = useState("");
   const [weight, setWeight] = useState("");
   const [calories, setCalories] = useState("");
   const [notes, setNotes] = useState("");
-
-  const onGroupIdSelect = (id) => {
-    setGroupId(id);
-  };
-  const onIngredientNameChange = (value) => setIngredientName(value);
-  const onWeightChange = (value) => setWeight(value);
-  const onCaloriesChange = (value) => setCalories(value);
-  const onNotesChange = (value) => setNotes(value);
 
   const isAddIngredientButtonDisabled =
     !ingredientName && !weight && !calories && !notes;
@@ -52,7 +44,7 @@ export const AddIngredientModal = () => {
     dispatch(
       addIngredient({
         blockId: addIngredientsModalData?.receiptBlockId,
-        blockItemId: groupId,
+        blockItemId,
         ingredient: {
           name: ingredientName,
           weight,
@@ -74,8 +66,8 @@ export const AddIngredientModal = () => {
             { name: "Выберите группу", value: undefined, id: -1 },
             ...blockItems,
           ]}
-          value={groupId}
-          onSelect={onGroupIdSelect}
+          value={blockItemId}
+          onSelect={setBlockItemId}
         />
       </div>
       <div className={styles.container}>
@@ -83,28 +75,28 @@ export const AddIngredientModal = () => {
           <Input
             type={"text"}
             placeholder={"Название ингредиента"}
-            onChange={onIngredientNameChange}
+            onChange={setIngredientName}
           />
         </div>
         <div>
           <Input
             type={"number"}
             placeholder={"Вес"}
-            onChange={onWeightChange}
+            onChange={setWeight}
           />
         </div>
         <div>
           <Input
             type={"number"}
             placeholder={"Ккал"}
-            onChange={onCaloriesChange}
+            onChange={setCalories}
           />
         </div>
         <div>
           <Input
             type={"text"}
             placeholder={"Примечания"}
-            onChange={onNotesChange}
+            onChange={setNotes}
           />
         </div>
         <div>

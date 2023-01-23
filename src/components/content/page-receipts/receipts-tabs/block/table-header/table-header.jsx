@@ -1,11 +1,10 @@
 import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
 import { useState } from "react";
 import styles from "../block-table.module.scss";
-import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 
 export const TableHeader = ({ blockId }) => {
-  const { selectAllBlockItems, resetBlockItemsSelection } = blocksSlice.actions;
+  const { selectAllBlockItems, resetBlockItemSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
   const [isChecked, setIsChecked] = useState(false);
@@ -16,7 +15,7 @@ export const TableHeader = ({ blockId }) => {
       dispatch(selectAllBlockItems({ blockId }));
     } else {
       setIsChecked(false);
-      dispatch(resetBlockItemsSelection());
+      dispatch(resetBlockItemSelection({blockId}));
     }
   };
 

@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { localStorageStateManager } from "../../local-storage/local-storage";
+import { localStorageStateManager } from "local-storage/local-storage";
 
 const initialState = {
   // whole app starting uniqueId
   // before localStorage init
   uniqueId: 0,
   receiptBlocks: [],
-  // selectedBlockId: null,
+  checkedBlockId: null,
+  checkedBlockItems: [],
+  checkedBlockSubItems: [],
+
   selectedGroupIds: {},
   selectedIngredientIds: [],
 };
@@ -102,45 +105,58 @@ export const blocksSlice = createSlice({
 
     selectBlockItem(state, action) {
       const { blockId, blockItemId } = action.payload;
-      if (state.selectedGroupIds[blockId]) {
-        state.selectedGroupIds[blockId].push(blockItemId);
-      } else {
-        state.selectedGroupIds[blockId] = [blockItemId];
-      }
+      const block = state.receiptBlocks.find(({id}) => id === blockId);
+      if (!block) return;
+
+      const blockItem = block.items.find(({id}) => id === blockItemId);
+      if (!blockItem) return;
+
+      state.checkedBlockItems.push(blockItemId)
+      blockItem?.subItems?.forEach(({id}) => state.checkedBlockSubItems.push(id));
     },
 
     unSelectBlockItem(state, action) {
       const { blockId, blockItemId } = action.payload;
-      const index = state.selectedGroupIds[blockId]?.indexOf(blockItemId);
-      if (index > -1) {
-        state.selectedGroupIds[blockId].splice(index, 1);
-      }
-      if (state.selectedGroupIds[blockId]?.length === 0) {
-        delete state.selectedGroupIds[blockId];
-      }
+      const block = state.receiptBlocks.find(({id}) => id === blockId);
+      if (!block) return;
+
+      const blockItem = block.items.find(({id}) => id === blockItemId);
+      if (!blockItem) return;
+
+      state.checkedBlockItems = state.checkedBlockItems.filter(id => id !== blockItemId)
+      blockItem?.subItems?.forEach(({id}) => {
+        state.checkedBlockSubItems = state.checkedBlockSubItems.filter(subItemId => subItemId !== id)
+      });
     },
 
     selectAllBlockItems(state, action) {
       const { blockId } = action.payload;
-      const block = state.receiptBlocks.find(({ id }) => id === blockId);
-      if (!block.items?.length) return;
+      const block = state.receiptBlocks.find(({id}) => id === blockId);
+      if (!block) return;
 
-      state.selectedGroupIds[blockId] = [];
-      block.items.forEach(({ id }) => state.selectedGroupIds[blockId].push(id));
-      // state.selectedBlockId = null
+      state.checkedBlockId = blockId;
+      block?.items?.forEach(({id, subItems}) => {
+        state.checkedBlockItems.push(id);
+        subItems?.forEach(({id}) => state.checkedBlockSubItems.push(id));
+      });
     },
 
-    // unSelectAllGroups(state) {
-    //   state.selectedGroupIds = {};
-    //   state.selectedBlockId = null;
-    //   state.selectedIngredientIds = [];
-    // },
+    resetCheckboxes(state) {
+      state.checkedBlockId = null;
+      state.checkedBlockItems = [];
+      state.checkedBlockSubItems = [];
+    },
 
-    resetBlockItemsSelection(state) {
-      const blockId = Object.keys(state.selectedGroupIds)[0];
-      if (!blockId) return;
+    // TODO: resetAllBlockCheckboxes
+    resetBlockItemSelection(state, action) {
+      const {blockId} = action.payload;
+      const block = state.receiptBlocks.find(({id}) => id === blockId);
+      if (!block) return;
 
-      delete state.selectedGroupIds[blockId];
+      block?.items?.forEach(({id, subItems}) => {
+        state.checkedBlockItems = state.checkedBlockItems.filter(itemId => itemId !== id);
+        subItems?.forEach(({id}) => state.checkedBlockSubItems = state.checkedBlockSubItems.filter(itemId => itemId !== id));
+      });
     },
 
     removeSelectedBlockItems(state) {

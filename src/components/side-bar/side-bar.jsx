@@ -6,6 +6,7 @@ import { Dropdown } from "./dropdown/dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { sideBarSlice } from "../../store/reducers/side-bar-slice";
 import { snacksCategories } from "../../app-constants";
+import {blocksSlice} from "../../store/reducers/blocks-slice";
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ export const SideBar = () => {
             Добро пожаловать в <br /> &quot;Фабрику бургеров&quot;{" "}
           </div>
         </div>
-        {/*eslint-ignore next-line*/}
         <div className={styles.toggleIconWrapper}>
           <ArrowLeft className={styles.clickIcon} onClick={toggleOpen} />
         </div>

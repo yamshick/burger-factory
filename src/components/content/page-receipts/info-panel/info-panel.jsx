@@ -10,7 +10,7 @@ export const InfoPanel = ({}) => {
   const dispatch = useDispatch();
   const {
     removeSelectedBlockItems,
-    resetBlockItemsSelection,
+    resetCheckboxes,
     copySelectedBlockItems,
   } = blocksSlice.actions;
   const selectedGroupsBlockId = Object.keys(selectedGroupIds)[0];
@@ -18,7 +18,7 @@ export const InfoPanel = ({}) => {
   if (!selectedGroupsBlockId) return null;
 
   const onRemoveGroups = () => dispatch(removeSelectedBlockItems());
-  const onRemoveSelection = () => dispatch(resetBlockItemsSelection());
+  const onRemoveSelection = () => dispatch(resetCheckboxes());
   const onCopySelectedBlockItems = () => dispatch(copySelectedBlockItems());
   return (
     <div className={styles.infoPanelContainer}>

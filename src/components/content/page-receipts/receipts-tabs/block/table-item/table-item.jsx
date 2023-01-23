@@ -130,11 +130,9 @@ export const TableItem = ({
   };
 
   const { selectBlockItem, unSelectBlockItem } = blocksSlice.actions;
-  const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
-  const isChecked = selectedGroupIds[receiptBlockId]?.includes(id);
-  const isCheckboxDisabled =
-    Object.keys(selectedGroupIds).length &&
-    Number(Object.keys(selectedGroupIds)[0]) !== receiptBlockId;
+  const { checkedBlockId, checkedBlockItems } = useSelector((state) => state.blocksReducer);
+  const isChecked = checkedBlockItems?.includes(id);
+  // const isCheckboxDisabled = checkedBlockId && (checkedBlockId !== receiptBlockId)
   const onCheck = (event) => {
     const { checked } = event.target;
 
@@ -170,7 +168,7 @@ export const TableItem = ({
             type={"checkbox"}
             onChange={onCheck}
             checked={isChecked}
-            disabled={isCheckboxDisabled}
+            // disabled={isCheckboxDisabled}
           />
         </div>
         <div className={[tableStyles.cell, tableStyles.name].join(" ")}>
