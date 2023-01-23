@@ -76,6 +76,8 @@ export const TableItem = ({
 
   const { removeBlockItem, updateBlockItem } = blocksSlice.actions;
   const dispatch = useDispatch();
+
+  // TODO
   const onGroupNameChange = (value) => {
     setCurName(value);
   };

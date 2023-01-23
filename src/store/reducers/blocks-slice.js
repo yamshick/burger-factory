@@ -72,12 +72,31 @@ export const blocksSlice = createSlice({
 
       if (blockIndex === -1) return;
 
-      const group = state.receiptBlocks[blockIndex].items.find(
+      const blockItem = state.receiptBlocks[blockIndex].items.find(
         ({ id }) => id === blockItemId
       );
 
       for (let key in data) {
-        group[key] = data[key];
+        blockItem[key] = data[key];
+      }
+    },
+
+    updateBlockSubItem(state, action) {
+      const { blockId, blockItemId, blockSubItemId, data } = action.payload;
+
+      const block = state.receiptBlocks.find(({ id }) => id === blockId);
+      if (!block) return;
+
+      const blockItem = block.items.find(({ id }) => id === blockItemId);
+      if (!blockItem) return;
+
+      const blockSubItem = blockItem.ingredients.find(
+        ({ id }) => id === blockSubItemId
+      );
+      if (!blockSubItem) return;
+
+      for (let key in data) {
+        blockSubItem[key] = data[key];
       }
     },
 
