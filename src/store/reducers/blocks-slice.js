@@ -46,12 +46,12 @@ export const blocksSlice = createSlice({
       }
     },
 
-    removeGroup(state, action) {
-      const { blockId, groupId } = action.payload;
+    removeBlockItem(state, action) {
+      const { blockId, blockItemId } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const groupIndex = block.groups.findIndex(({ id }) => id === groupId);
+      const groupIndex = block.groups.findIndex(({ id }) => id === blockItemId);
       if (groupIndex > -1) {
         block.groups.splice(groupIndex, 1);
       }

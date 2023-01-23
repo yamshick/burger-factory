@@ -74,7 +74,7 @@ export const TableItem = ({
   const [curCalories, setCurCalories] = useState(calories);
   const [curNotes, setCurNotes] = useState(notes);
 
-  const { removeGroup, updateGroup } = blocksSlice.actions;
+  const { removeBlockItem, updateGroup } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onGroupNameChange = (value) => {
     setCurName(value);
@@ -142,7 +142,7 @@ export const TableItem = ({
   };
 
   const onGroupRemoveClick = () =>
-    dispatch(removeGroup({ blockId: receiptBlockId, groupId: id }));
+    dispatch(removeBlockItem({ blockId: receiptBlockId, blockItemId: id }));
 
   return (
     <div
