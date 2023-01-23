@@ -1,7 +1,7 @@
 import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
 import { useState } from "react";
 import styles from "../block-table.module.scss";
-import CloseCross from "../../../../../../assets/icons/close-cross.svg";
+import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 
 export const TableHeader = ({ blockId }) => {
@@ -35,9 +35,7 @@ export const TableHeader = ({ blockId }) => {
       <div className={[styles.cell, styles.weight].join(" ")}> Вес </div>
       <div className={[styles.cell, styles.calories].join(" ")}> Ккал </div>
       <div className={[styles.cell, styles.notes].join(" ")}> Примечания </div>
-      <div className={[styles.cell, styles.removeIcon].join(" ")}>
-        <CloseCross />
-      </div>
+      <div className={[styles.cell, styles.removeIcon].join(" ")}></div>
     </div>
   );
 };

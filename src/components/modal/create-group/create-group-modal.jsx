@@ -10,7 +10,7 @@ import { Button } from "../button";
 
 export const CreateGroupModal = () => {
   const { setIsNewGroupModalOpen, resetAddGroupModalData } = modalSlice.actions;
-  const { addGroup } = blocksSlice.actions;
+  const { addBlockItem } = blocksSlice.actions;
   const { isNewGroupModalOpen, addGroupModalData } = useSelector(
     (state) => state.modalReducer
   );
@@ -35,9 +35,9 @@ export const CreateGroupModal = () => {
   const isAddGroupButtonDisabled = !groupName && !weight && !calories && !notes;
   const onAddGroupClick = () => {
     dispatch(
-      addGroup({
+      addBlockItem({
         blockId: addGroupModalData?.receiptBlockId,
-        group: {
+        blockItem: {
           name: groupName,
           weight,
           calories,

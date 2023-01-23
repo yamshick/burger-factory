@@ -32,15 +32,15 @@ export const blocksSlice = createSlice({
         state.receiptBlocks.splice(index, 1);
       }
     },
-    addGroup(state, action) {
-      const { blockId, group } = action.payload;
+    addBlockItem(state, action) {
+      const { blockId, blockItem } = action.payload;
       const block = state.receiptBlocks.find(
         (receipt) => receipt.id === blockId
       );
 
       if (block) {
         block.groups.push({
-          ...group,
+          ...blockItem,
           id: state.uniqueId++,
         });
       }
