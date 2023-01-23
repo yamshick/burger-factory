@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import styles from "./hav-bar.module.scss";
 import { Receipts } from "components/container/page-receipts/receipts";
 import { BreadCrumbs } from "../bread-crumbs/bread-crumbs";
@@ -9,15 +14,32 @@ export const NavBar = () => {
       <div>
         <nav>
           <div className={styles.navBar}>
-            <div className={styles.navBarItem}>
-              <Link to="/">Рецепты</Link>
-            </div>
-            <div className={styles.navBarItem}>
-              <Link to="/price-list">Прайс-лист</Link>
-            </div>
-            <div className={styles.navBarItem}>
-              <Link to="/combo-sets">Комбо-наборы</Link>
-            </div>
+            {[
+              { name: "Рецепты", link: "/" },
+              { name: "Прайс-лист", link: "/price-list" },
+              { name: "Комбо-наборы", link: "/combo-sets" },
+            ].map(({ name, link }, idx) => (
+              <div key={idx}>
+                <div className={styles.navBarItem}>
+                  <NavLink
+                    className={styles.link}
+                    // activeStyle={{ color: "red" }}
+                    to={link}
+                  >
+                    {name}
+                  </NavLink>
+                </div>
+              </div>
+            ))}
+            {/*<div className={styles.navBarItem}>*/}
+            {/*  <NavLink className={styles.link} activeStyle={{ color: 'red' }} to="/">Рецепты</NavLink>*/}
+            {/*</div>*/}
+            {/*<div className={styles.navBarItem}>*/}
+            {/*  <NavLink className={styles.link} to="/price-list">Прайс-лист</NavLink>*/}
+            {/*</div>*/}
+            {/*<div className={styles.navBarItem}>*/}
+            {/*  <NavLink className={styles.link} to="/combo-sets">Комбо-наборы</NavLink>*/}
+            {/*</div>*/}
           </div>
         </nav>
 

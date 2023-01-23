@@ -1,8 +1,17 @@
 .navBar {
   display: flex;
-  padding: 25px;
+  margin-bottom: 36px;
 }
 
 .navBarItem {
-  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:active {
+  font-weight: bold;
 }
