@@ -21,7 +21,7 @@ export const blocksSlice = createSlice({
         id: state.uniqueId++,
         name,
         snackId,
-        groups: [],
+        items: [],
       });
     },
     removeBlock(state, action) {
@@ -39,7 +39,7 @@ export const blocksSlice = createSlice({
       );
 
       if (block) {
-        block.groups.push({
+        block.items.push({
           ...blockItem,
           id: state.uniqueId++,
         });
@@ -51,9 +51,9 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const groupIndex = block.groups.findIndex(({ id }) => id === blockItemId);
-      if (groupIndex > -1) {
-        block.groups.splice(groupIndex, 1);
+      const itemIndex = block.items.findIndex(({ id }) => id === blockItemId);
+      if (itemIndex > -1) {
+        block.items.splice(itemIndex, 1);
       }
     },
 
@@ -61,20 +61,20 @@ export const blocksSlice = createSlice({
       const { blockId, groups } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => blockId === id);
       if (!block) return;
-      block.groups = groups;
+      block.items = groups;
     },
 
     updateGroup(state, action) {
-      const { blockId, groupId, data } = action.payload;
+      const { blockId, blockItemId, data } = action.payload;
       const block = state.receiptBlocks.find(
-        (receipt) => receipt.id === blockId
+        ({id}) => id === blockId
       );
       const blockIndex = state.receiptBlocks.indexOf(block);
 
       if (blockIndex === -1) return;
 
-      const group = state.receiptBlocks[blockIndex].groups.find(
-        (group) => group.id === groupId
+      const group = state.receiptBlocks[blockIndex].items.find(
+        ({id}) => id === blockItemId
       );
 
       for (let key in data) {
@@ -83,17 +83,17 @@ export const blocksSlice = createSlice({
     },
 
     selectGroup(state, action) {
-      const { blockId, groupId } = action.payload;
+      const { blockId, blockItemId } = action.payload;
       if (state.selectedGroupIds[blockId]) {
-        state.selectedGroupIds[blockId].push(groupId);
+        state.selectedGroupIds[blockId].push(blockItemId);
       } else {
-        state.selectedGroupIds[blockId] = [groupId];
+        state.selectedGroupIds[blockId] = [blockItemId];
       }
     },
 
     unSelectGroup(state, action) {
-      const { blockId, groupId } = action.payload;
-      const index = state.selectedGroupIds[blockId]?.indexOf(groupId);
+      const { blockId, blockItemId } = action.payload;
+      const index = state.selectedGroupIds[blockId]?.indexOf(blockItemId);
       if (index > -1) {
         state.selectedGroupIds[blockId].splice(index, 1);
       }
@@ -107,10 +107,10 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(
         (receipt) => receipt.id === blockId
       );
-      if (!block.groups?.length) return;
+      if (!block.items?.length) return;
 
       state.selectedGroupIds[blockId] = [];
-      block.groups.forEach(({ id }) =>
+      block.items.forEach(({ id }) =>
         state.selectedGroupIds[blockId].push(id)
       );
       // state.selectedBlockId = null
@@ -138,7 +138,7 @@ export const blocksSlice = createSlice({
       );
       if (!block) return;
 
-      block.groups = block.groups.filter(
+      block.items = block.items.filter(
         ({ id }) => !state.selectedGroupIds[blockId].includes(id)
       );
 
@@ -154,16 +154,16 @@ export const blocksSlice = createSlice({
       );
       if (!block) return;
 
-      const newGroups = [];
+      const newBlockItems = [];
       state.selectedGroupIds[blockId].forEach((groupId) => {
-        const group = block.groups.find(({ id }) => id === groupId);
-        newGroups.push({ ...group, id: state.uniqueId++ });
+        const blockItem = block.items.find(({ id }) => id === groupId);
+        newBlockItems.push({ ...blockItem, id: state.uniqueId++ });
       });
       const newBlock = {
         id: state.uniqueId++,
         name: "Новый блок",
         snackId: block.snackId,
-        groups: newGroups,
+        items: newBlockItems,
       };
       state.receiptBlocks.push(newBlock);
 
@@ -171,43 +171,43 @@ export const blocksSlice = createSlice({
     },
 
     addIngredient(state, action) {
-      const { blockId, groupId, ingredient } = action.payload;
+      const { blockId, blockItemId, ingredient } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
       const newIngredient = {
         id: state.uniqueId++,
-        ingredientGroupId: Number(groupId),
+        ingredientGroupId: Number(blockItemId),
         ...ingredient,
       };
 
-      const group = block.groups.find(({ id }) => id === Number(groupId));
-      if (!group) {
-        block.groups.push(newIngredient);
+      const parentBlockItem = block.items.find(({ id }) => id === Number(blockItemId));
+      if (!parentBlockItem) {
+        block.items.push(newIngredient);
         return;
       }
 
-      if (!group.ingredients) {
-        group.ingredients = [newIngredient];
+      if (!parentBlockItem.ingredients) {
+        parentBlockItem.ingredients = [newIngredient];
       } else {
-        group.ingredients.push(newIngredient);
+        parentBlockItem.ingredients.push(newIngredient);
       }
     },
 
     removeIngredient(state, action) {
-      const { blockId, groupId, ingredientId } = action.payload;
+      const { blockId, blockItemId, ingredientId } = action.payload;
 
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const group = block.groups.find(({ id }) => id === Number(groupId));
-      if (!group) return;
+      const parentBlockItem = block.items.find(({ id }) => id === Number(blockItemId));
+      if (!parentBlockItem) return;
 
-      const ingredientIndex = group.ingredients.findIndex(
+      const ingredientIndex = parentBlockItem.ingredients.findIndex(
         ({ id }) => id === ingredientId
       );
       if (ingredientIndex > -1) {
-        group.ingredients.splice(ingredientIndex, 1);
+        parentBlockItem.ingredients.splice(ingredientIndex, 1);
       }
     },
   },

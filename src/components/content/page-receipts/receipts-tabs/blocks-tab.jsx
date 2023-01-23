@@ -20,8 +20,8 @@ export const BlocksTab = () => {
       <div>
         {receiptBlocks
           ?.filter(({ snackId: id }) => snackId === id)
-          ?.map(({ name, id, groups }) => (
-            <Block key={id} id={id} name={name} groups={groups} />
+          ?.map(({ name, id, items }) => (
+            <Block key={id} id={id} name={name} groups={items} />
           ))}
       </div>
       <div>

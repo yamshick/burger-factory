@@ -84,7 +84,7 @@ export const TableItem = ({
       dispatch(
         updateGroup({
           blockId: receiptBlockId,
-          groupId: id,
+          blockItemId: id,
           data: { name: curName },
         })
       );
@@ -96,7 +96,7 @@ export const TableItem = ({
       dispatch(
         updateGroup({
           blockId: receiptBlockId,
-          groupId: id,
+          blockItemId: id,
           data: { weight: curWeight },
         })
       );
@@ -108,7 +108,7 @@ export const TableItem = ({
       dispatch(
         updateGroup({
           blockId: receiptBlockId,
-          groupId: id,
+          blockItemId: id,
           data: { calories: curCalories },
         })
       );
@@ -120,7 +120,7 @@ export const TableItem = ({
       dispatch(
         updateGroup({
           blockId: receiptBlockId,
-          groupId: id,
+          blockItemId: id,
           data: { notes: curNotes },
         })
       );
@@ -137,8 +137,8 @@ export const TableItem = ({
     const { checked } = event.target;
 
     checked
-      ? dispatch(selectGroup({ blockId: receiptBlockId, groupId: id }))
-      : dispatch(unSelectGroup({ blockId: receiptBlockId, groupId: id }));
+      ? dispatch(selectGroup({ blockId: receiptBlockId, blockItemId: id }))
+      : dispatch(unSelectGroup({ blockId: receiptBlockId, blockItemId: id }));
   };
 
   const onGroupRemoveClick = () =>

@@ -1,7 +1,7 @@
 import update from "immutability-helper";
 import { TableItem } from "./table-item/table-item";
 import { useCallback, useEffect, useState } from "react";
-import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
+import { blocksSlice } from "store/reducers/blocks-slice";
 import { useDispatch } from "react-redux";
 import styles from "./block-table.module.scss";
 import { TableHeader } from "./table-header/table-header";

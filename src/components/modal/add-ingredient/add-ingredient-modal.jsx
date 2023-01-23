@@ -19,10 +19,10 @@ export const AddIngredientModal = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);
 
   const blockId = addIngredientsModalData?.receiptBlockId;
-  const groups =
+  const blockItems =
     receiptBlocks
       ?.find(({ id }) => id === blockId)
-      ?.groups?.filter(({ type }) => type === blockItemsTypes.GROUP) || [];
+      ?.items?.filter(({ type }) => type === blockItemsTypes.GROUP) || [];
 
   const dispatch = useDispatch();
 
@@ -52,7 +52,7 @@ export const AddIngredientModal = () => {
     dispatch(
       addIngredient({
         blockId: addIngredientsModalData?.receiptBlockId,
-        groupId,
+        blockItemId: groupId,
         ingredient: {
           name: ingredientName,
           weight,
@@ -72,7 +72,7 @@ export const AddIngredientModal = () => {
         <Select
           items={[
             { name: "Выберите группу", value: undefined, id: -1 },
-            ...groups,
+            ...blockItems,
           ]}
           value={groupId}
           onSelect={onGroupIdSelect}
