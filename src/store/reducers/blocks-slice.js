@@ -90,7 +90,7 @@ export const blocksSlice = createSlice({
       const blockItem = block.items.find(({ id }) => id === blockItemId);
       if (!blockItem) return;
 
-      const blockSubItem = blockItem.ingredients.find(
+      const blockSubItem = blockItem.subItems.find(
         ({ id }) => id === blockSubItemId
       );
       if (!blockSubItem) return;
@@ -203,10 +203,10 @@ export const blocksSlice = createSlice({
         return;
       }
 
-      if (!parentBlockItem.ingredients) {
-        parentBlockItem.ingredients = [newIngredient];
+      if (!parentBlockItem.subItems) {
+        parentBlockItem.subItems = [newIngredient];
       } else {
-        parentBlockItem.ingredients.push(newIngredient);
+        parentBlockItem.subItems.push(newIngredient);
       }
     },
 
@@ -221,11 +221,11 @@ export const blocksSlice = createSlice({
       );
       if (!parentBlockItem) return;
 
-      const ingredientIndex = parentBlockItem.ingredients.findIndex(
+      const ingredientIndex = parentBlockItem.subItems.findIndex(
         ({ id }) => id === ingredientId
       );
       if (ingredientIndex > -1) {
-        parentBlockItem.ingredients.splice(ingredientIndex, 1);
+        parentBlockItem.subItems.splice(ingredientIndex, 1);
       }
     },
   },

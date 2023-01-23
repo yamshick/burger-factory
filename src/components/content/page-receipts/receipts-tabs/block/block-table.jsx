@@ -39,7 +39,7 @@ export const BlockTable = ({ receiptBlockId, blockItems }) => {
     <div className={styles.mainContainer}>
       <TableHeader blockId={receiptBlockId} />
       {currentBlockItems.map(
-        ({ id, name, weight, calories, notes, ingredients, type }, index) => (
+        ({ id, name, weight, calories, notes, subItems, type }, index) => (
           <TableItem
             type={type}
             key={id}
@@ -49,7 +49,7 @@ export const BlockTable = ({ receiptBlockId, blockItems }) => {
             weight={weight}
             calories={calories}
             notes={notes}
-            ingredients={ingredients}
+            subItems={subItems}
             index={index}
             moveCard={moveCard}
           />

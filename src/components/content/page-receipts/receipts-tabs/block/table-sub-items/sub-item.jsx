@@ -97,7 +97,7 @@ export const TableSubItem = ({
           styles.ingredientName,
         ].join(" ")}
       >
-        <div>{name}</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{name}</div>
       </EditableElement>
       <EditableElement
         onChange={setCurrentWeight}

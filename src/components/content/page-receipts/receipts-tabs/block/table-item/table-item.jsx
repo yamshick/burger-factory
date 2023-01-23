@@ -24,7 +24,7 @@ export const TableItem = ({
   calories,
   notes,
   moveCard,
-  ingredients,
+  subItems,
 }) => {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
@@ -236,7 +236,7 @@ export const TableItem = ({
         {type === blockItemsTypes.GROUP && (
           <TableSubItems
             isParentGroupChecked={isChecked}
-            ingredients={ingredients}
+            subItems={subItems}
             blockId={receiptBlockId}
             groupId={id}
           />
