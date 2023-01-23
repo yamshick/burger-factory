@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { modalSlice } from "store/reducers/modal-slice";
 import { NewBlockButton } from "../new-block-button/new-block-button";
-import { Block } from "../receipt-block/block";
+import { Block } from "./block/block";
 import { InfoPanel } from "../info-panel/info-panel";
 export const BlocksTab = () => {
   const { receiptBlocks } = useSelector((state) => state.blocksReducer);

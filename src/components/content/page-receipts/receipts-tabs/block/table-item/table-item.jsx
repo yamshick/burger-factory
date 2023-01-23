@@ -2,13 +2,13 @@ import { useDrag, useDrop } from "react-dnd";
 import { useRef, useState } from "react";
 import styles from "./table-item.module.scss";
 import tableStyles from "../block-table.module.scss";
-import { EditableElement } from "../../../../editable-element/editable-element";
-import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
+import { EditableElement } from "../../../../../editable-element/editable-element";
+import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Ingredients } from "../ingredients/ingredients";
 import CloseCross from "assets/icons/close-cross.svg";
 import Dots from "assets/icons/dots.svg";
-import { blockItemsTypes } from "../../../../../app-constants";
+import { blockItemsTypes } from "../../../../../../app-constants";
 
 const ItemTypes = {
   CARD: "card",

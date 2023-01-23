@@ -1,7 +1,7 @@
-import { blocksSlice } from "../../../../../store/reducers/blocks-slice";
+import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
 import { useState } from "react";
 import styles from "../block-table.module.scss";
-import CloseCross from "../../../../../assets/icons/close-cross.svg";
+import CloseCross from "../../../../../../assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 
 export const TableHeader = ({ blockId }) => {

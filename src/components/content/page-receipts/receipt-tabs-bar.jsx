@@ -1,7 +1,7 @@
 import { Header } from "./nav-header/header";
 import { useSelector } from "react-redux";
 import { CookingTimeTab } from "./receipts-tabs/cooking-time-tab";
-import { ServingTab } from "./receipts-tabs/servingTab";
+import { ServingTab } from "./receipts-tabs/serving-tab";
 import { BlocksTab } from "./receipts-tabs/blocks-tab";
 export const ReceiptTabsBar = () => {
   const { activeHeaderNavItem } = useSelector(
