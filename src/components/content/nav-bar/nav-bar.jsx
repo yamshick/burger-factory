@@ -5,7 +5,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import styles from "./hav-bar.module.scss";
-import { Receipts } from "components/container/page-receipts/receipts";
+import { ReceiptTabsBar } from "components/content/page-receipts/receipt-tabs-bar";
 import { BreadCrumbs } from "../bread-crumbs/bread-crumbs";
 
 export const NavBar = () => {
@@ -46,7 +46,7 @@ export const NavBar = () => {
         <BreadCrumbs />
 
         <Routes>
-          <Route path="/" element={<Receipts />}></Route>
+          <Route path="/" element={<ReceiptTabsBar />}></Route>
           <Route path="/price-list" element={<PriceList />}></Route>
           <Route path="/combo-sets" element={<ComboSets />}></Route>
         </Routes>

@@ -19,20 +19,31 @@ export const InfoPanel = ({}) => {
   const onCopySelectedGroups = () => dispatch(copySelectedGroups());
   return (
     <div className={styles.infoPanelContainer}>
-      <button onClick={onRemoveGroups}>
-        <RemoveIcon />
-        Удалить
-      </button>
-      <button onClick={onCopySelectedGroups}>
-        <CopyIcon />
-        Копировать
-      </button>
-      <button onClick={onRemoveSelection}>
-        <RemoveSelectionIcon />
-        Снять выделение
-      </button>
-      <div>Выбранные ингридиенты</div>
-      <div>Общий вес</div>
+      <div className={styles.buttonGroup}>
+        <button onClick={onRemoveGroups} className={styles.button}>
+          <span>
+            <RemoveIcon />
+          </span>
+          <span>Удалить</span>
+        </button>
+        <button onClick={onCopySelectedGroups} className={styles.button}>
+          <span>
+            <CopyIcon />
+          </span>
+          <span>Копировать</span>
+        </button>
+        <button onClick={onRemoveSelection} className={styles.button}>
+          <span>
+            <RemoveSelectionIcon />
+          </span>
+          <span>Снять выделение</span>
+        </button>
+      </div>
+      <div className={styles.infoContent}>
+        <div>Выбранные ингридиенты</div>
+        <div className={styles.divider}> </div>
+        <div>Общий вес</div>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import styles from "./app.module.scss";
 import { SideBar } from "./components/side-bar/side-bar";
-import { Content } from "./components/container/content";
+import { Content } from "./components/content/content";
 import { CreateBlockModal } from "./components/modal/create-block/create-block-modal";
 import { useSelector } from "react-redux";
 import { CreateGroupModal } from "./components/modal/create-group/create-group-modal";
