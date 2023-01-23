@@ -8,15 +8,18 @@ import { blocksSlice } from "store/reducers/blocks-slice";
 export const InfoPanel = ({}) => {
   const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
   const dispatch = useDispatch();
-  const { removeSelectedGroups, resetGroupSelection, copySelectedGroups } =
-    blocksSlice.actions;
+  const {
+    removeSelectedBlockItems,
+    resetBlockItemsSelection,
+    copySelectedBlockItems,
+  } = blocksSlice.actions;
   const selectedGroupsBlockId = Object.keys(selectedGroupIds)[0];
 
   if (!selectedGroupsBlockId) return null;
 
-  const onRemoveGroups = () => dispatch(removeSelectedGroups());
-  const onRemoveSelection = () => dispatch(resetGroupSelection());
-  const onCopySelectedGroups = () => dispatch(copySelectedGroups());
+  const onRemoveGroups = () => dispatch(removeSelectedBlockItems());
+  const onRemoveSelection = () => dispatch(resetBlockItemsSelection());
+  const onCopySelectedBlockItems = () => dispatch(copySelectedBlockItems());
   return (
     <div className={styles.infoPanelContainer}>
       <div className={styles.buttonGroup}>
@@ -26,7 +29,7 @@ export const InfoPanel = ({}) => {
           </span>
           <span>Удалить</span>
         </button>
-        <button onClick={onCopySelectedGroups} className={styles.button}>
+        <button onClick={onCopySelectedBlockItems} className={styles.button}>
           <span>
             <CopyIcon />
           </span>

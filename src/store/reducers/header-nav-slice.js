@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { headerNavItems, LOCAL_STORAGE_STATE } from "../../app-constants";
+import { headerNavItems } from "../../app-constants";
+import { localStorageStateManager } from "local-storage/local-storage";
 
 const initialState = {
   activeHeaderNavItem: headerNavItems[0],
@@ -7,7 +8,7 @@ const initialState = {
 
 export const headerNavSlice = createSlice({
   name: "sideBar",
-  initialState: LOCAL_STORAGE_STATE.headerNavReducer || initialState,
+  initialState: localStorageStateManager.value.headerNavReducer || initialState,
   reducers: {
     setActiveHeaderNavItem(state, action) {
       state.activeHeaderNavItem = action.payload;

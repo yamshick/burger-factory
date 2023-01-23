@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE_STATE, snacksCategories } from "../../app-constants";
+import { snacksCategories } from "../../app-constants";
+import { localStorageStateManager } from "local-storage/local-storage";
 
 const initialState = {
   isSideBarOpen: true,
@@ -10,7 +11,7 @@ const initialState = {
 
 export const sideBarSlice = createSlice({
   name: "sideBar",
-  initialState: LOCAL_STORAGE_STATE.sideBarReducer || initialState,
+  initialState: localStorageStateManager.value?.sideBarReducer || initialState,
   reducers: {
     setIsSideBarOpen(state, action) {
       state.isSideBarOpen = action.payload;

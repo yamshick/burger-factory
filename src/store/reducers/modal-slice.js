@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE_STATE } from "../../app-constants";
+import { localStorageStateManager } from "local-storage/local-storage";
 
 const initialState = {
   isNewBlockModalOpen: false,
@@ -11,7 +11,7 @@ const initialState = {
 
 export const modalSlice = createSlice({
   name: "modal",
-  initialState: LOCAL_STORAGE_STATE.modalReducer || initialState,
+  initialState: localStorageStateManager.value.modalReducer || initialState,
   reducers: {
     setIsNewBlockModalOpen(state, action) {
       state.isNewBlockModalOpen = action.payload;

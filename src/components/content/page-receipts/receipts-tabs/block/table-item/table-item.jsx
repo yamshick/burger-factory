@@ -127,7 +127,7 @@ export const TableItem = ({
     }
   };
 
-  const { selectGroup, unSelectGroup } = blocksSlice.actions;
+  const { selectBlockItem, unSelectBlockItem } = blocksSlice.actions;
   const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
   const isChecked = selectedGroupIds[receiptBlockId]?.includes(id);
   const isCheckboxDisabled =
@@ -137,8 +137,10 @@ export const TableItem = ({
     const { checked } = event.target;
 
     checked
-      ? dispatch(selectGroup({ blockId: receiptBlockId, blockItemId: id }))
-      : dispatch(unSelectGroup({ blockId: receiptBlockId, blockItemId: id }));
+      ? dispatch(selectBlockItem({ blockId: receiptBlockId, blockItemId: id }))
+      : dispatch(
+          unSelectBlockItem({ blockId: receiptBlockId, blockItemId: id })
+        );
   };
 
   const onGroupRemoveClick = () =>

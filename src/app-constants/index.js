@@ -1,7 +1,3 @@
-export const LOCAL_STORAGE_STATE_KEY = "BURGER_FACTORY_STATE";
-
-export const LOCAL_STORAGE_STATE =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_STATE_KEY)) || {};
 export const blockItemsTypes = {
   INGREDIENT: "INGREDIENT",
   GROUP: "GROUP",

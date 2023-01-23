@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE_STATE } from "../../app-constants";
+import { localStorageStateManager } from "../../local-storage/local-storage";
 
 const initialState = {
   // whole app starting uniqueId
@@ -13,7 +13,7 @@ const initialState = {
 
 export const blocksSlice = createSlice({
   name: "blocks",
-  initialState: LOCAL_STORAGE_STATE.blocksReducer || initialState,
+  initialState: localStorageStateManager.value.blocksReducer || initialState,
   reducers: {
     addBlock(state, action) {
       const { name, snackId } = action.payload;
@@ -81,7 +81,7 @@ export const blocksSlice = createSlice({
       }
     },
 
-    selectGroup(state, action) {
+    selectBlockItem(state, action) {
       const { blockId, blockItemId } = action.payload;
       if (state.selectedGroupIds[blockId]) {
         state.selectedGroupIds[blockId].push(blockItemId);
@@ -90,7 +90,7 @@ export const blocksSlice = createSlice({
       }
     },
 
-    unSelectGroup(state, action) {
+    unSelectBlockItem(state, action) {
       const { blockId, blockItemId } = action.payload;
       const index = state.selectedGroupIds[blockId]?.indexOf(blockItemId);
       if (index > -1) {
@@ -101,11 +101,9 @@ export const blocksSlice = createSlice({
       }
     },
 
-    selectAllGroups(state, action) {
+    selectAllBlockItems(state, action) {
       const { blockId } = action.payload;
-      const block = state.receiptBlocks.find(
-        (receipt) => receipt.id === blockId
-      );
+      const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block.items?.length) return;
 
       state.selectedGroupIds[blockId] = [];
@@ -119,14 +117,14 @@ export const blocksSlice = createSlice({
     //   state.selectedIngredientIds = [];
     // },
 
-    resetGroupSelection(state) {
+    resetBlockItemsSelection(state) {
       const blockId = Object.keys(state.selectedGroupIds)[0];
       if (!blockId) return;
 
       delete state.selectedGroupIds[blockId];
     },
 
-    removeSelectedGroups(state) {
+    removeSelectedBlockItems(state) {
       const blockId = Object.keys(state.selectedGroupIds)[0];
       if (!blockId) return;
 
@@ -142,7 +140,7 @@ export const blocksSlice = createSlice({
       state.selectedGroupIds = {};
     },
 
-    copySelectedGroups(state) {
+    copySelectedBlockItems(state) {
       const blockId = Object.keys(state.selectedGroupIds)[0];
       if (!blockId) return;
 

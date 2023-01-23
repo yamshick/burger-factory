@@ -5,7 +5,7 @@ import CloseCross from "assets/icons/close-cross.svg";
 import { useDispatch } from "react-redux";
 
 export const TableHeader = ({ blockId }) => {
-  const { selectAllGroups, resetGroupSelection } = blocksSlice.actions;
+  const { selectAllBlockItems, resetBlockItemsSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
   const [isChecked, setIsChecked] = useState(false);
@@ -13,10 +13,10 @@ export const TableHeader = ({ blockId }) => {
     const { checked } = event.target;
     if (checked) {
       setIsChecked(true);
-      dispatch(selectAllGroups({ blockId }));
+      dispatch(selectAllBlockItems({ blockId }));
     } else {
       setIsChecked(false);
-      dispatch(resetGroupSelection());
+      dispatch(resetBlockItemsSelection());
     }
   };
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./app";
+// eslint-ignore next-line
+import { LOCAL_STORAGE_STATE_KEY } from "local-storage/local-storage";
 import { setupStore } from "./store/store";
 import { Provider } from "react-redux";
 import { DndProvider } from "react-dnd";
