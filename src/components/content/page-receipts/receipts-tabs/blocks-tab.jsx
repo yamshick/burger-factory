@@ -21,7 +21,7 @@ export const BlocksTab = () => {
         {receiptBlocks
           ?.filter(({ snackId: id }) => snackId === id)
           ?.map(({ name, id, items }) => (
-            <Block key={id} id={id} name={name} groups={items} />
+            <Block key={id} id={id} name={name} items={items} />
           ))}
       </div>
       <div>

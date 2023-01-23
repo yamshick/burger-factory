@@ -58,23 +58,22 @@ export const blocksSlice = createSlice({
     },
 
     setGroups(state, action) {
-      const { blockId, groups } = action.payload;
+      const { blockId, blockItems } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => blockId === id);
       if (!block) return;
-      block.items = groups;
+
+      block.items = blockItems;
     },
 
     updateGroup(state, action) {
       const { blockId, blockItemId, data } = action.payload;
-      const block = state.receiptBlocks.find(
-        ({id}) => id === blockId
-      );
+      const block = state.receiptBlocks.find(({ id }) => id === blockId);
       const blockIndex = state.receiptBlocks.indexOf(block);
 
       if (blockIndex === -1) return;
 
       const group = state.receiptBlocks[blockIndex].items.find(
-        ({id}) => id === blockItemId
+        ({ id }) => id === blockItemId
       );
 
       for (let key in data) {
@@ -110,9 +109,7 @@ export const blocksSlice = createSlice({
       if (!block.items?.length) return;
 
       state.selectedGroupIds[blockId] = [];
-      block.items.forEach(({ id }) =>
-        state.selectedGroupIds[blockId].push(id)
-      );
+      block.items.forEach(({ id }) => state.selectedGroupIds[blockId].push(id));
       // state.selectedBlockId = null
     },
 
@@ -181,7 +178,9 @@ export const blocksSlice = createSlice({
         ...ingredient,
       };
 
-      const parentBlockItem = block.items.find(({ id }) => id === Number(blockItemId));
+      const parentBlockItem = block.items.find(
+        ({ id }) => id === Number(blockItemId)
+      );
       if (!parentBlockItem) {
         block.items.push(newIngredient);
         return;
@@ -200,7 +199,9 @@ export const blocksSlice = createSlice({
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       if (!block) return;
 
-      const parentBlockItem = block.items.find(({ id }) => id === Number(blockItemId));
+      const parentBlockItem = block.items.find(
+        ({ id }) => id === Number(blockItemId)
+      );
       if (!parentBlockItem) return;
 
       const ingredientIndex = parentBlockItem.ingredients.findIndex(

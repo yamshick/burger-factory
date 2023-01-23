@@ -6,21 +6,22 @@ import { useDispatch } from "react-redux";
 import styles from "./block-table.module.scss";
 import { TableHeader } from "./table-header/table-header";
 
-export const BlockTable = ({ receiptBlockId, groups }) => {
+export const BlockTable = ({ receiptBlockId, blockItems }) => {
   const { setGroups } = blocksSlice.actions;
   const dispatch = useDispatch();
 
-  const [currentGroups, setCurrentGroups] = useState(groups);
+  const [currentGroups, setCurrentGroups] = useState(blockItems);
   const setGroupsToStore = () =>
-    dispatch(setGroups({ blockId: receiptBlockId, groups: currentGroups }));
+    dispatch(setGroups({ blockId: receiptBlockId, blockItems: currentGroups }));
 
   useEffect(() => {
     setGroupsToStore(currentGroups);
   }, [currentGroups]);
 
   useEffect(() => {
-    setCurrentGroups(groups);
-  }, [groups]);
+    setCurrentGroups(blockItems);
+  }, [blockItems]);
+
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setCurrentGroups((prevCards) =>
       update(prevCards, {

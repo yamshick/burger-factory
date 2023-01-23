@@ -42,7 +42,13 @@ export const Ingredients = ({
           <div
             className={[styles.cell, styles.removeIcon].join(" ")}
             onClick={() =>
-              dispatch(removeIngredient({ blockId, blockItemId: groupId, ingredientId: id }))
+              dispatch(
+                removeIngredient({
+                  blockId,
+                  blockItemId: groupId,
+                  ingredientId: id,
+                })
+              )
             }
           >
             <CloseCross />
