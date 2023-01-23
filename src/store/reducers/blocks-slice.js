@@ -57,7 +57,7 @@ export const blocksSlice = createSlice({
       }
     },
 
-    setGroups(state, action) {
+    setBlockItems(state, action) {
       const { blockId, blockItems } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => blockId === id);
       if (!block) return;
@@ -65,7 +65,7 @@ export const blocksSlice = createSlice({
       block.items = blockItems;
     },
 
-    updateGroup(state, action) {
+    updateBlockItem(state, action) {
       const { blockId, blockItemId, data } = action.payload;
       const block = state.receiptBlocks.find(({ id }) => id === blockId);
       const blockIndex = state.receiptBlocks.indexOf(block);

@@ -7,23 +7,25 @@ import styles from "./block-table.module.scss";
 import { TableHeader } from "./table-header/table-header";
 
 export const BlockTable = ({ receiptBlockId, blockItems }) => {
-  const { setGroups } = blocksSlice.actions;
+  const { setBlockItems } = blocksSlice.actions;
   const dispatch = useDispatch();
 
-  const [currentGroups, setCurrentGroups] = useState(blockItems);
-  const setGroupsToStore = () =>
-    dispatch(setGroups({ blockId: receiptBlockId, blockItems: currentGroups }));
+  const [currentBlockItems, setCurrentBlockItems] = useState(blockItems);
+  const setBlockItemsToStore = () =>
+    dispatch(
+      setBlockItems({ blockId: receiptBlockId, blockItems: currentBlockItems })
+    );
 
   useEffect(() => {
-    setGroupsToStore(currentGroups);
-  }, [currentGroups]);
+    setBlockItemsToStore(currentBlockItems);
+  }, [currentBlockItems]);
 
   useEffect(() => {
-    setCurrentGroups(blockItems);
+    setCurrentBlockItems(blockItems);
   }, [blockItems]);
 
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    setCurrentGroups((prevCards) =>
+    setCurrentBlockItems((prevCards) =>
       update(prevCards, {
         $splice: [
           [dragIndex, 1],
@@ -36,7 +38,7 @@ export const BlockTable = ({ receiptBlockId, blockItems }) => {
   return (
     <div className={styles.mainContainer}>
       <TableHeader blockId={receiptBlockId} />
-      {currentGroups.map(
+      {currentBlockItems.map(
         ({ id, name, weight, calories, notes, ingredients, type }, index) => (
           <TableItem
             type={type}

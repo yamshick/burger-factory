@@ -74,7 +74,7 @@ export const TableItem = ({
   const [curCalories, setCurCalories] = useState(calories);
   const [curNotes, setCurNotes] = useState(notes);
 
-  const { removeBlockItem, updateGroup } = blocksSlice.actions;
+  const { removeBlockItem, updateBlockItem } = blocksSlice.actions;
   const dispatch = useDispatch();
   const onGroupNameChange = (value) => {
     setCurName(value);
@@ -82,7 +82,7 @@ export const TableItem = ({
   const onNameBlur = () => {
     if (curName && curName !== name) {
       dispatch(
-        updateGroup({
+        updateBlockItem({
           blockId: receiptBlockId,
           blockItemId: id,
           data: { name: curName },
@@ -94,7 +94,7 @@ export const TableItem = ({
   const onWeightBlur = () => {
     if (curWeight && curWeight !== weight) {
       dispatch(
-        updateGroup({
+        updateBlockItem({
           blockId: receiptBlockId,
           blockItemId: id,
           data: { weight: curWeight },
@@ -106,7 +106,7 @@ export const TableItem = ({
   const onCaloriesBlur = () => {
     if (curCalories && curCalories !== calories) {
       dispatch(
-        updateGroup({
+        updateBlockItem({
           blockId: receiptBlockId,
           blockItemId: id,
           data: { calories: curCalories },
@@ -118,7 +118,7 @@ export const TableItem = ({
   const onNotesBlur = () => {
     if (curNotes && curNotes !== notes) {
       dispatch(
-        updateGroup({
+        updateBlockItem({
           blockId: receiptBlockId,
           blockItemId: id,
           data: { notes: curNotes },
