@@ -6,7 +6,7 @@ import { Dropdown } from "./dropdown/dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { sideBarSlice } from "../../store/reducers/side-bar-slice";
 import { snacksCategories } from "../../app-constants";
-import {blocksSlice} from "../../store/reducers/blocks-slice";
+import { blocksSlice } from "../../store/reducers/blocks-slice";
 
 export const SideBar = () => {
   const dispatch = useDispatch();

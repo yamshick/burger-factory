@@ -79,25 +79,13 @@ export const AddIngredientModal = () => {
           />
         </div>
         <div>
-          <Input
-            type={"number"}
-            placeholder={"Вес"}
-            onChange={setWeight}
-          />
+          <Input type={"number"} placeholder={"Вес"} onChange={setWeight} />
         </div>
         <div>
-          <Input
-            type={"number"}
-            placeholder={"Ккал"}
-            onChange={setCalories}
-          />
+          <Input type={"number"} placeholder={"Ккал"} onChange={setCalories} />
         </div>
         <div>
-          <Input
-            type={"text"}
-            placeholder={"Примечания"}
-            onChange={setNotes}
-          />
+          <Input type={"text"} placeholder={"Примечания"} onChange={setNotes} />
         </div>
         <div>
           <Button

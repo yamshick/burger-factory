@@ -6,20 +6,23 @@ import styles from "./info-panel.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { blocksSlice } from "store/reducers/blocks-slice";
 export const InfoPanel = ({}) => {
-  const { selectedGroupIds } = useSelector((state) => state.blocksReducer);
+  const { checkedBlockItems, checkedBlockSubItems } = useSelector(
+    (state) => state.blocksReducer
+  );
+  const { dropDownActiveSubItem } = useSelector(
+    (state) => state.sideBarReducer
+  );
+  const snackId = dropDownActiveSubItem?.id;
   const dispatch = useDispatch();
-  const {
-    removeSelectedBlockItems,
-    resetCheckboxes,
-    copySelectedBlockItems,
-  } = blocksSlice.actions;
-  const selectedGroupsBlockId = Object.keys(selectedGroupIds)[0];
+  const { removeSelectedBlockItems, resetCheckboxes, copySelectedBlockItems } =
+    blocksSlice.actions;
 
-  if (!selectedGroupsBlockId) return null;
+  if (!checkedBlockItems.length && !checkedBlockSubItems.length) return null;
 
   const onRemoveGroups = () => dispatch(removeSelectedBlockItems());
   const onRemoveSelection = () => dispatch(resetCheckboxes());
-  const onCopySelectedBlockItems = () => dispatch(copySelectedBlockItems());
+  const onCopySelectedBlockItems = () =>
+    dispatch(copySelectedBlockItems({ snackId }));
   return (
     <div className={styles.infoPanelContainer}>
       <div className={styles.buttonGroup}>

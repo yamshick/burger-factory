@@ -1,13 +1,21 @@
 import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "../block-table.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-export const TableHeader = ({ blockId }) => {
+export const TableHeader = ({ blockId, blockItems }) => {
+  const { checkedBlocks } = useSelector((state) => state.blocksReducer);
+
   const { selectAllBlockItems, resetBlockItemSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(
+    !!checkedBlocks?.includes(blockId)
+  );
+
+  useEffect(() => {
+      setIsChecked(!!checkedBlocks?.includes(blockId));
+  }, [checkedBlocks])
   const onCheck = (event) => {
     const { checked } = event.target;
     if (checked) {
@@ -15,7 +23,7 @@ export const TableHeader = ({ blockId }) => {
       dispatch(selectAllBlockItems({ blockId }));
     } else {
       setIsChecked(false);
-      dispatch(resetBlockItemSelection({blockId}));
+      dispatch(resetBlockItemSelection({ blockId }));
     }
   };
 
@@ -28,6 +36,7 @@ export const TableHeader = ({ blockId }) => {
           type={"checkbox"}
           onChange={onCheck}
           checked={isChecked}
+          disabled={!blockItems?.length}
         />
       </div>
       <div className={[styles.cell, styles.name].join(" ")}> Название </div>

@@ -3,7 +3,7 @@ import Dots from "assets/icons/dots.svg";
 import CloseCross from "assets/icons/close-cross.svg";
 import { EditableElement } from "../../../../../editable-element/editable-element";
 import { blocksSlice } from "store/reducers/blocks-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 export const TableSubItem = ({
   id,
@@ -14,8 +14,11 @@ export const TableSubItem = ({
   blockId,
   groupId,
   isParentGroupChecked,
+  isParentCheckboxDisabled,
 }) => {
-  const { removeIngredient, updateBlockSubItem } = blocksSlice.actions;
+  const { checkedBlockSubItems } = useSelector((state) => state.blocksReducer);
+  const { removeIngredient, updateBlockSubItem, checkBlockSubItem } =
+    blocksSlice.actions;
   const dispatch = useDispatch();
 
   const [currentName, setCurrentName] = useState(name);
@@ -23,6 +26,10 @@ export const TableSubItem = ({
   const [currentCalories, setCurrentCalories] = useState(calories);
   const [currentNotes, setCurrentNotes] = useState(notes);
 
+  const onCheck = (event) => {
+    const { checked } = event.target;
+    dispatch(checkBlockSubItem({ checked, id }));
+  };
   const onNameBlur = () => {
     if (currentName && currentName !== name) {
       dispatch(
@@ -84,7 +91,9 @@ export const TableSubItem = ({
         <input
           className={styles.checkbox}
           type={"checkbox"}
-          checked={isParentGroupChecked}
+          checked={checkedBlockSubItems.includes(id)}
+          // disabled={isParentCheckboxDisabled}
+          onChange={onCheck}
         />
       </div>
       <EditableElement

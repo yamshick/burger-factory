@@ -3,6 +3,7 @@ import { TableSubItem } from "./sub-item";
 
 export const TableSubItems = ({
   isParentGroupChecked,
+  isParentCheckboxDisabled,
   blockId,
   groupId,
   subItems,
@@ -19,7 +20,8 @@ export const TableSubItems = ({
             notes={notes}
             blockId={blockId}
             groupId={groupId}
-            isParentGroupChecked={isParentGroupChecked}
+            // isParentGroupChecked={isParentGroupChecked}
+            // isParentCheckboxDisabled={isParentCheckboxDisabled}
           />
         </div>
       ))}

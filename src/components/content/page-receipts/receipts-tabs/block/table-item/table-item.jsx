@@ -130,7 +130,7 @@ export const TableItem = ({
   };
 
   const { selectBlockItem, unSelectBlockItem } = blocksSlice.actions;
-  const { checkedBlockId, checkedBlockItems } = useSelector((state) => state.blocksReducer);
+  const { checkedBlockItems } = useSelector((state) => state.blocksReducer);
   const isChecked = checkedBlockItems?.includes(id);
   // const isCheckboxDisabled = checkedBlockId && (checkedBlockId !== receiptBlockId)
   const onCheck = (event) => {
@@ -233,7 +233,8 @@ export const TableItem = ({
       <div>
         {type === blockItemsTypes.GROUP && (
           <TableSubItems
-            isParentGroupChecked={isChecked}
+            // isParentGroupChecked={isChecked}
+            // isParentCheckboxDisabled={isCheckboxDisabled}
             subItems={subItems}
             blockId={receiptBlockId}
             groupId={id}
