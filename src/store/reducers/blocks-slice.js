@@ -182,9 +182,12 @@ export const blocksSlice = createSlice({
     },
 
     checkBlockSubItem(state, action) {
-      const { id, checked } = action.payload;
+      const { id, checked, blockId } = action.payload;
       if (checked) {
         state.checkedBlockSubItems.push(id);
+        if (!state.checkedBlocks.find((id) => id === blockId)) {
+          state.checkedBlocks.push(blockId);
+        }
       } else {
         state.checkedBlockSubItems = state.checkedBlockSubItems.filter(
           (subItemId) => subItemId !== id

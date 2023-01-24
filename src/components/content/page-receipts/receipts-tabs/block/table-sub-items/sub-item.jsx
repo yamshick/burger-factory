@@ -28,7 +28,7 @@ export const TableSubItem = ({
 
   const onCheck = (event) => {
     const { checked } = event.target;
-    dispatch(checkBlockSubItem({ checked, id }));
+    dispatch(checkBlockSubItem({ checked, id, blockId }));
   };
   const onNameBlur = () => {
     if (currentName && currentName !== name) {
