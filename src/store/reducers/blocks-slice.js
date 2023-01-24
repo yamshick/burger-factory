@@ -135,6 +135,13 @@ export const blocksSlice = createSlice({
           (subItemId) => subItemId !== id
         );
       });
+
+      if (
+        !state.checkedBlockItems.length &&
+        !state.checkedBlockSubItems.length
+      ) {
+        state.checkedBlocks = [];
+      }
     },
 
     selectAllBlockItems(state, action) {
@@ -182,6 +189,13 @@ export const blocksSlice = createSlice({
         state.checkedBlockSubItems = state.checkedBlockSubItems.filter(
           (subItemId) => subItemId !== id
         );
+
+        if (
+          !state.checkedBlockItems.length &&
+          !state.checkedBlockSubItems.length
+        ) {
+          state.checkedBlocks = [];
+        }
       }
     },
 

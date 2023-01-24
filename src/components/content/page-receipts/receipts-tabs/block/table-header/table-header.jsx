@@ -1,10 +1,11 @@
 import { blocksSlice } from "../../../../../../store/reducers/blocks-slice";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styles from "../block-table.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 export const TableHeader = ({ blockId, blockItems }) => {
-  const { checkedBlocks } = useSelector((state) => state.blocksReducer);
+  const { checkedBlocks, checkedBlockItems, checkedBlockSubItems } =
+    useSelector((state) => state.blocksReducer);
 
   const { selectAllBlockItems, resetBlockItemSelection } = blocksSlice.actions;
   const dispatch = useDispatch();
@@ -14,8 +15,9 @@ export const TableHeader = ({ blockId, blockItems }) => {
   );
 
   useEffect(() => {
-      setIsChecked(!!checkedBlocks?.includes(blockId));
-  }, [checkedBlocks])
+    setIsChecked(!!checkedBlocks?.includes(blockId));
+  }, [checkedBlocks]);
+
   const onCheck = (event) => {
     const { checked } = event.target;
     if (checked) {
