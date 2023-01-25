@@ -10,9 +10,6 @@ const initialState = {
   checkedBlocks: [],
   checkedBlockItems: [],
   checkedBlockSubItems: [],
-
-  selectedGroupIds: {},
-  selectedIngredientIds: [],
 };
 
 export const blocksSlice = createSlice({

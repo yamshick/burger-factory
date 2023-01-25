@@ -5,6 +5,10 @@ import RemoveSelectionIcon from "assets/icons/remove-selection-icon.svg";
 import styles from "./info-panel.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { blocksSlice } from "store/reducers/blocks-slice";
+import {
+  getIngredientsTotalWeight,
+  getIngredientsTotalCount,
+} from "../../../../store/selectors/block-selectors";
 export const InfoPanel = ({}) => {
   const { checkedBlockItems, checkedBlockSubItems } = useSelector(
     (state) => state.blocksReducer
@@ -12,6 +16,9 @@ export const InfoPanel = ({}) => {
   const { dropDownActiveSubItem } = useSelector(
     (state) => state.sideBarReducer
   );
+  const totalIngredients = useSelector(getIngredientsTotalCount);
+  const totalWeight = useSelector(getIngredientsTotalWeight);
+
   const snackId = dropDownActiveSubItem?.id;
   const dispatch = useDispatch();
   const { removeSelectedBlockItems, resetCheckboxes, copySelectedBlockItems } =
@@ -46,9 +53,11 @@ export const InfoPanel = ({}) => {
         </button>
       </div>
       <div className={styles.infoContent}>
-        <div>Выбранные ингридиенты</div>
+        <div>Выбранные ингридиенты:</div>
+        <div className={styles.infoContentCheckedIngrs}>{totalIngredients}</div>
         <div className={styles.divider}> </div>
-        <div>Общий вес</div>
+        <div>Общий вес:</div>
+        <div className={styles.infoContentCheckedIngrs}>{totalWeight}</div>
       </div>
     </div>
   );
